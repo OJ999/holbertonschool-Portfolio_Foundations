@@ -1,34 +1,139 @@
-Introduction
-The Project
-The Context
-The Team
-Blog posts
-Tutorial
+Part1
+1. Project name and tag line
+ Rename the document to be the Project’s name.
+ At the top of the document restate the project name as a header. Add a tagline below which is exactly one sentence (or phrase)
+ that best summarizes your project.
 
+2. Team Members
+ In a section named “Team”, answer:
+-What are the names of the team members?
+-What role will each person play in completing the project?
+-Why have those roles been decided?
 
-Project name and tag line
-Team Members
-Challenge statement
-Risks
-Infrastructure
-Existing Solutions
+3. Technologies
+ In a section named “Technologies”:
+-List the libraries, languages, platforms, frameworks, hardware, books, resources that will be necessary to complete your
+ project.
+-For 2 of these technology choices, describe another option and what were the trade-offs between the chosen technology and
+ the alternate. Explain what led to the final decision to use a particular technology.
+
+4. Challenge statement
+ In a section named “Challenge”:
+-Describe the problem the Portfolio Project is intended to solve.
+-Explain what the Portfolio Project will not solve
+-Explain who the Portfolio Project will help and/or who the users will be
+-Is this project relevant or dependent on a specific locale?
+
+5. Risks
+ In a section named “Risks”:
+-Describe the technical risks, the potential impact, and what safeguards or alternatives you have in mind
+-Describe non-technical risks, the potential impact, and what strategies are in place to prevent these negative outcomes
+
+6. Infrastructure
+ In a section called “Infrastructure”:
+-Describe your process for branching and merging in your team’s repository (e.g. GitHub flow, Picking the right branch-merge
+ strategy)
+-Describe your strategy for deployment
+-Describe how you will populate your app with data
+-Describe what tools, automation or process you will use for testing
+
+7. Existing Solutions
+ In a section called “Existing Solutions”:
+-List any similar products or solutions that currently exist.
+-For each item in the list, explain similarities and differences
+-If you intend to reimplement a proven solution, then describe the various proven solutions and why you chose to reimplement
+ based on a particular specification.
+ As an example, lets say you will develop an image compression algorithm, and decide to go with Transform coding. Utilize this
+ section to describe the different classes of image compression, and the various types of compression algorithms and the unique
+ aspects of Transform coding.
+
+Part2
+1. Rename the document
+ Rename the document to be the Project’s name and append “ MVP specification”
+
+2. Architecture
+ In a section named “Architecture”:
+-Include an illustration or diagram of the Portfolio Project’s MVP. This should include an end-to-end map for the data
+ flowing through your system. Each part of the diagram should be clearly labeled.
+ Here are some resources to learn more:
+
+-Web Architecture 101
+-List of tools to create architecture diagrams
+-Web Application Architecture
+
+3. APIs
+ In a section called “APIs and Methods”:
+-List and describe the API routes that you will be creating for your web client to communicate with your web server
+-List and describe any API endpoints or function/methods that you will be creating to allow any other clients to use
+-List and describe any 3rd party APIs that you will be using
+
+4. Data Modelling
+ In a section named “Data Model”:
+-Create a data model diagram to clarify how data will be stored
+
+5. User Stories
+ First, research what user stories are, and how to write them. Also note some pitfalls of creating user stories that are too
+ general.
+ In the “User Stories” section:
+-Define 3-5 detailed user stories that will be satisfied when your MVP is complete.
+
+6. Mockups
+ If there is any visual interface to your Portfolio Project, this section is required. If your project lives on the commandline,
+ or in script, then do not include this section. Use a prototyping tool, like Balsamiq, to draft your user-facing visual
+ interfaces.
+ In a section called “Mockups”:
+-Include a mockup of each view that will need to be created for your MVP
+
+Part3
+1. Column Headers
+ Set up your Trello board with the following columns:
+-Proposed
+-Approved
+-In Progress
+-Dev Complete
+-Tested
+-Deployed
+
+2. Create Cards
+ In the “proposed” column, create cards to fully represent the engineering tasks necessary to implement to satisfy the User
+ Stories defined for your MVP. For each card, attach detailed descriptions, mockups, diagrams or technical specifications
+ relevant to the engineering task.
+
+3. Assign cards
+ For each card, assign ownership to a team member. This should make sense given the roles specified in the project proposal.
+
+4. Invite collaborators
+ Invite the technical staff to be a collaborator on the Trello board so that each proposed task can be commented upon and
+ moved into the approved column. 
+
+5. Set Due Dates
+ For each task, based on priority and dependencies, assign a due date within the 2 week development window.
+
+6. Add a few mandatory tasks
+ Include the following tasks to the “Approved” column:
+-Create presentation
+-Create project landing page
+-Write comprehensive README.md
+-Make demo of the project
+-Write blog post
+
 
 
 Features:
 
- • Timing: As you perform the exercise you will hear and see cues that help you time each repetition (rep). Cues such as Prepare, Start, Release, Rest. Timing parameters can be fine-tuned down to the finest detail in order to match your pace exactly.
+ • Timing: As you perform the exercise you will hear and see cues that help you time each repetition (rep). Cues such as
+ Prepare, Start, Release, Rest. Timing parameters can be fine-tuned down to the finest detail in order to match your pace
+ exactly.
  • Counting: You specify the number of reps and sets, and My-PT keeps track while you just follow the cues.
  • Scheduling: Assign a schedule to each exercise and My-PT will remind you when it is due. 
- • Instructions: You can enter instructions for each of your exercises, by typing them into the exercise, and / or by adding photos to the exercise. You can choose to automatically show or speak the instructions as you start the exercise. You can also record audio of your own instructions, if you prefer that. Thus, My-PT also serves as a convenient place to keep all your exercise instructions.
- • Feedback to your physical therapist: When you finish an exercise you can mark the difficulty and make notes with questions or feedback to your therapist. You can generate a report that shows this information (PDF format) and email it to your therapist.
+ • Instructions: You can enter instructions for each of your exercises, by typing them into the exercise, and / or by adding
+ photos to the exercise. You can choose to automatically show or speak the instructions as you start the exercise. You can also
+ record audio of your own instructions, if you prefer that. Thus, My-PT also serves as a convenient place to keep all your
+ exercise instructions.
+ • Feedback to your physical therapist: When you finish an exercise you can mark the difficulty and make notes with questions
+ or feedback to your therapist. You can generate a report that shows this information (PDF format) and email it to your
+ therapist.
  • Workouts: You can string multiple exercises together into workouts, which can play through your entire regimen automatically.
  
- That’s it. What My-PT does not do for you is to provide any pre-defined exercises (other than a couple of examples). You enter each exercise according to your own needs or directions from a physiotherapist
- 
- 
-<!-- ======= Header ======= -->
-<!-- ======= Hero Section ======= -->
-<!-- ======= Testimonials Section ======= -->
-<!-- ======= Services Section ======= -->
-<!-- ======= Contact Section ======= -->
-<!-- ======= Footer ======= -->
+ That’s it. What My-PT does not do for you is to provide any pre-defined exercises (other than a couple of examples). You
+ enter each exercise according to your own needs or directions from a physiotherapist
