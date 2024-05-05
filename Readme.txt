@@ -8,6 +8,8 @@ Answer:
 
 Your Personalized Workout Companion
 
+<----------------------------------------------------------------------------------------------------------------------------->
+
 2. Team Members
  In a section named “Team”, answer:
 -What are the names of the team members?
@@ -15,6 +17,17 @@ Your Personalized Workout Companion
 -Why have those roles been decided?
 Answer:
 
+• Team
+ Omar Jaber:
+ Rebal : 
+
+• Roles:
+Omar Jaber:
+ Rebal :
+
+• Reasons for Roles:
+
+<----------------------------------------------------------------------------------------------------------------------------->
 
 3. Technologies
  In a section named “Technologies”:
@@ -24,6 +37,30 @@ Answer:
  the alternate. Explain what led to the final decision to use a particular technology.
 Answer:
 
+• Technologies
+
+-Languages: JavaScript, HTML, CSS
+-Frameworks: React for frontend development, Node.js for backend development
+-Libraries: Redux for state management, Express.js for server-side routing
+-Database: MongoDB for storing exercise data and user information
+-Tools: Git for version control, VSCode as the integrated development environment (IDE)
+-Platform: Web application deployed on AWS (Amazon Web Services)
+ 
+• Trade-offs and Decisions:
+
+-Frontend Framework: React vs AngularReact was chosen for its simplicity, virtual DOM, and strong community support. It
+allows for faster rendering of UI components and is more flexible in terms of integration with other libraries and frameworks.
+Angular, on the other hand, is a more opinionated framework with a steeper learning curve. While it provides more built-in
+features out of the box, it can be more cumbersome for smaller projects and may introduce unnecessary complexity. The decision
+to use React was made based on the team's familiarity with it and its suitability for the project's scale and requirements.
+-Database: MongoDB vs PostgreSQLMongoDB was selected for its flexibility and scalability, especially for handling unstructured
+data such as exercise information. It offers a JSON-like document model, which aligns well with the data structure of many
+fitness-related applications. PostgreSQL, on the other hand, is a relational database management system known for its ACID
+compliance and strong consistency. It is well-suited for applications with complex relationships between data entities.
+However, for My-PT, the non-relational nature of MongoDB better accommodates the dynamic and evolving nature of exercise data.
+Additionally, MongoDB's scalability makes it a more suitable choice for potential future expansion of the application.
+
+<----------------------------------------------------------------------------------------------------------------------------->
 
 4. Challenge statement
  In a section named “Challenge”:
@@ -33,6 +70,7 @@ Answer:
 -Is this project relevant or dependent on a specific locale?
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 5. Risks
  In a section named “Risks”:
@@ -40,6 +78,7 @@ Answer:
 -Describe non-technical risks, the potential impact, and what strategies are in place to prevent these negative outcomes
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 6. Infrastructure
  In a section called “Infrastructure”:
@@ -50,6 +89,7 @@ Answer:
 -Describe what tools, automation or process you will use for testing
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 7. Existing Solutions
  In a section called “Existing Solutions”:
@@ -62,26 +102,27 @@ Answer:
  aspects of Transform coding.
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
+<----------------------------------------------------------------------------------------------------------------------------->
 
 Part2
 1. Rename the document
  Rename the document to be the Project’s name and append “ MVP specification”
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 2. Architecture
  In a section named “Architecture”:
 -Include an illustration or diagram of the Portfolio Project’s MVP. This should include an end-to-end map for the data
  flowing through your system. Each part of the diagram should be clearly labeled.
  Here are some resources to learn more:
-Answer:
-
-
 -Web Architecture 101
 -List of tools to create architecture diagrams
 -Web Application Architecture
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 3. APIs
  In a section called “APIs and Methods”:
@@ -90,12 +131,14 @@ Answer:
 -List and describe any 3rd party APIs that you will be using
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 4. Data Modelling
  In a section named “Data Model”:
 -Create a data model diagram to clarify how data will be stored
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 5. User Stories
  First, research what user stories are, and how to write them. Also note some pitfalls of creating user stories that are too
@@ -104,6 +147,7 @@ Answer:
 -Define 3-5 detailed user stories that will be satisfied when your MVP is complete.
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 6. Mockups
  If there is any visual interface to your Portfolio Project, this section is required. If your project lives on the commandline,
@@ -113,6 +157,8 @@ Answer:
 -Include a mockup of each view that will need to be created for your MVP
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
+<----------------------------------------------------------------------------------------------------------------------------->
 
 Part3
 1. Column Headers
@@ -125,6 +171,7 @@ Part3
 -Deployed
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 2. Create Cards
  In the “proposed” column, create cards to fully represent the engineering tasks necessary to implement to satisfy the User
@@ -132,22 +179,26 @@ Answer:
  relevant to the engineering task.
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 3. Assign cards
  For each card, assign ownership to a team member. This should make sense given the roles specified in the project proposal.
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 4. Invite collaborators
  Invite the technical staff to be a collaborator on the Trello board so that each proposed task can be commented upon and
  moved into the approved column. 
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 5. Set Due Dates
  For each task, based on priority and dependencies, assign a due date within the 2 week development window.
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
 
 6. Add a few mandatory tasks
  Include the following tasks to the “Approved” column:
@@ -158,8 +209,9 @@ Answer:
 -Write blog post
 Answer:
 
+<----------------------------------------------------------------------------------------------------------------------------->
+<----------------------------------------------------------------------------------------------------------------------------->
 
-<--------------->
 <!-- Features -->
 
  • Timing: As you perform the exercise you will hear and see cues that help you time each repetition (rep). Cues such as
