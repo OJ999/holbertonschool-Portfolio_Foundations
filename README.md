@@ -6,7 +6,7 @@ Part1
 Answer:
  Project Name: My-PT
 
-Your Personalized Workout Companion
+ Your Personalized Workout Companion
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
