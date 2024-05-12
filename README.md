@@ -1,27 +1,16 @@
-Part1
-1. Project name and tag line
- Rename the document to be the Project’s name.
- At the top of the document restate the project name as a header. Add a tagline below which is exactly one sentence (or phrase)
- that best summarizes your project.
-Answer:
- Project Name: My-PT
+My-PT ~ Your Personalized Workout Companion
 
- Your Personalized Workout Companion
+c:\Users\lenovo\Pictures\Screenshots\Screenshot 2024-05-12 191251.png
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
-2. Team Members
- In a section named “Team”, answer:
--What are the names of the team members?
--What role will each person play in completing the project?
--Why have those roles been decided?
-Answer:
+2. Team
 
-• Team
- Omar Jaber:
- Rebal : 
+ Omar Jaber 
+ Rebal 
 
 • Roles:
+Project Manager, Lead Developer, UI/UX Designer, Quality Assurance Engineer
  Omar Jaber:
  Rebal :
 
@@ -30,14 +19,6 @@ Answer:
 <----------------------------------------------------------------------------------------------------------------------------->
 
 3. Technologies
- In a section named “Technologies”:
--List the libraries, languages, platforms, frameworks, hardware, books, resources that will be necessary to complete your
- project.
--For 2 of these technology choices, describe another option and what were the trade-offs between the chosen technology and
- the alternate. Explain what led to the final decision to use a particular technology.
-Answer:
-
-• Technologies
 
 -Languages: JavaScript, HTML, CSS
 -Frameworks: React for frontend development, Node.js for backend development
@@ -63,13 +44,6 @@ Additionally, MongoDB's scalability makes it a more suitable choice for potentia
 <----------------------------------------------------------------------------------------------------------------------------->
 
 4. Challenge statement
- In a section named “Challenge”:
--Describe the problem the Portfolio Project is intended to solve.
--Explain what the Portfolio Project will not solve
--Explain who the Portfolio Project will help and/or who the users will be
--Is this project relevant or dependent on a specific locale?
-Answer:
-**Challenge**
 
 The Portfolio Project aims to address the challenge of effectively managing personalized workout routines and rehabilitation
 programs. It provides a solution for individuals who require structured exercise regimens tailored to their specific needs,
@@ -90,11 +64,7 @@ regarding user data privacy and healthcare information security in different jur
 <----------------------------------------------------------------------------------------------------------------------------->
 
 5. Risks
- In a section named “Risks”:
--Describe the technical risks, the potential impact, and what safeguards or alternatives you have in mind
--Describe non-technical risks, the potential impact, and what strategies are in place to prevent these negative outcomes
-Answer:
-
+ 
 • Technical Risks:
 
 1. Integration Complexity: Integrating multiple technologies such as React, Redux, Node.js, and MongoDB may lead to 
@@ -129,13 +99,6 @@ consequences and reputational damage.
 <----------------------------------------------------------------------------------------------------------------------------->
 
 6. Infrastructure
- In a section called “Infrastructure”:
--Describe your process for branching and merging in your team’s repository (e.g. GitHub flow, Picking the right branch-merge
- strategy)
--Describe your strategy for deployment
--Describe how you will populate your app with data
--Describe what tools, automation or process you will use for testing
-Answer:
 
 • Branching and Merging:
 Our team will follow the GitHub flow branching model for version control. In this model, we will have a main branch, typically
@@ -167,15 +130,6 @@ tests may overlook.
 <----------------------------------------------------------------------------------------------------------------------------->
 
 7. Existing Solutions
- In a section called “Existing Solutions”:
--List any similar products or solutions that currently exist.
--For each item in the list, explain similarities and differences
--If you intend to reimplement a proven solution, then describe the various proven solutions and why you chose to reimplement
- based on a particular specification.
- As an example, lets say you will develop an image compression algorithm, and decide to go with Transform coding. Utilize this
- section to describe the different classes of image compression, and the various types of compression algorithms and the unique
- aspects of Transform coding.
-Answer:
 
 • MyFitnessPal
 -Similarities: MyFitnessPal is a popular fitness app that allows users to track their exercise routines and nutritional intake.
@@ -203,53 +157,13 @@ Answer:
 <----------------------------------------------------------------------------------------------------------------------------->
 
 Part2
-1. Rename the document
- Rename the document to be the Project’s name and append “ MVP specification”
-Answer:
-
-My-PT MVP Specification
+1. My-PT MVP Specification
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
 2. Architecture
- In a section named “Architecture”:
--Include an illustration or diagram of the Portfolio Project’s MVP. This should include an end-to-end map for the data
- flowing through your system. Each part of the diagram should be clearly labeled.
- Here are some resources to learn more:
--Web Architecture 101
--List of tools to create architecture diagrams
--Web Application Architecture
-Answer:
-**Architecture**
 
-[Diagram]
-
-[The diagram illustrates the end-to-end flow of data in the My-PT MVP system.]
-
-1. Client Interface (Web Browser):
- -This is the user interface where clients interact with the application. It includes features such as exercise scheduling,
- timing cues, and feedback submission.
-   
-2. Frontend Framework (React):
- -The frontend framework handles the presentation layer of the application. It consists of React components responsible for
- rendering the user interface and handling user interactions.
-   
-3. Redux Store:
- -Redux is used for state management, storing data such as user preferences, exercise routines, and scheduling information.
- It ensures a single source of truth for the application's state.
-   
-4. API Requests:
- -The frontend communicates with the backend server through API requests. These requests include fetching exercise data,
- submitting user feedback, and retrieving scheduled workouts.
-   
-5. Backend Server (Node.js):
- -The backend server handles business logic, database interactions, and serves as a bridge between the frontend and the database. It is implemented using Node.js and Express.js.
-   
-6. Database (MongoDB):
- -MongoDB is used as the database to store exercise data, user profiles, scheduling information, and feedback submissions.
- It offers flexibility in storing unstructured data and scales well with the application's growth.
-
-[End of Diagram]
+Architecture.pdf
 
 This architecture ensures a smooth flow of data from the client interface through the frontend, backend, and database layers,
 providing users with a seamless experience while interacting with the My-PT application.
@@ -257,13 +171,8 @@ providing users with a seamless experience while interacting with the My-PT appl
 <----------------------------------------------------------------------------------------------------------------------------->
 
 3. APIs
- In a section called “APIs and Methods”:
--List and describe the API routes that you will be creating for your web client to communicate with your web server
--List and describe any API endpoints or function/methods that you will be creating to allow any other clients to use
--List and describe any 3rd party APIs that you will be using
-Answer:
 
-1. API Routes for Web Client (Web Server Communication):
+A. API Routes for Web Client (Web Server Communication):
 
 • GET /exercises:
  -Description: Retrieves a list of available exercises from the server.
@@ -278,7 +187,7 @@ Answer:
  -Parameters: JSON object containing user ID, feedback type, and comments.
  -Response: Success message or error status.
 
-2. API Endpoints for Other Clients:
+B. API Endpoints for Other Clients:
 
 • GET /api/v1/user/:id/exercises:
  -Description: Retrieves a specific user's exercise history and progress.
@@ -289,7 +198,7 @@ Answer:
  -Parameters: Exercise details such as name, description, and instructions.
  -Response: Success message or error status.
 
-3. 3rd Party APIs:
+C. 3rd Party APIs:
 
 • Google Maps API:
 -Description: Used for geolocation services, if needed for scheduling outdoor workouts or physical therapy locations.
@@ -303,54 +212,8 @@ Answer:
 <----------------------------------------------------------------------------------------------------------------------------->
 
 4. Data Modelling
- In a section named “Data Model”:
--Create a data model diagram to clarify how data will be stored
-Answer:
-[Diagram]
 
-[The diagram illustrates the data model for the My-PT application.]
-
-1. User
-• Attributes:
- -UserID (Primary Key)
- -Username
- -Email
- -Password
- -Profile Picture
-• Relationships:
- -One-to-Many relationship with ScheduledWorkout
- -One-to-Many relationship with Feedback
-
-2. Exercise
-• Attributes:
- -ExerciseID (Primary Key)
- -Name
- -Description
- -Instructions
-• Relationships:
- -One-to-Many relationship with ScheduledWorkout
-
-3. ScheduledWorkout
-• Attributes:
- -ScheduledWorkoutID (Primary Key)
- -UserID (Foreign Key)
- -Date
- -Time
- -Duration
- -Exercises (Array of ExerciseIDs)
-• Relationships:
- -Many-to-One relationship with User
- -Many-to-Many relationship with Exercise
-
-4.Feedback
-• Attributes:
- -FeedbackID (Primary Key)
- -UserID (Foreign Key)
- -Type (e.g., Difficulty, Question)
- -Comments
-• Relationships:
- -Many-to-One relationship with User
-[End of Diagram]
+Data_Modelling.pdf
 
 This data model represents the core entities and relationships within the My-PT application. Users can schedule workouts,
 which consist of multiple exercises. They can also provide feedback on their workouts or ask questions to their therapists.
@@ -360,11 +223,6 @@ submissions.
 <----------------------------------------------------------------------------------------------------------------------------->
 
 5. User Stories
- First, research what user stories are, and how to write them. Also note some pitfalls of creating user stories that are too
- general.
- In the “User Stories” section:
--Define 3-5 detailed user stories that will be satisfied when your MVP is complete.
-Answer:
 
 User stories are concise descriptions of a feature from the perspective of an end user, typically written in a format such
 as: "As a [type of user], I want [some goal] so that [some reason]." They help to articulate the needs and expectations of
@@ -381,21 +239,21 @@ users and guide the development process.
 
 • • Detailed User Stories for My-PT MVP:
 
-1. As a user recovering from a knee injury, I want to schedule my physical therapy exercises for specific dates and times so
+A. As a user recovering from a knee injury, I want to schedule my physical therapy exercises for specific dates and times so
 that I can track my progress and adhere to my rehabilitation program effectively.
 • Acceptance Criteria:
  -Ability to select exercises from a list and schedule them for future dates.
  -Option to specify the date, time, and duration for each scheduled workout.
  -Ability to view and edit scheduled workouts in a calendar or list view.
 
-2. As a fitness enthusiast, I want to explore a variety of exercises categorized by muscle group or type so that I candiversify
+B. As a fitness enthusiast, I want to explore a variety of exercises categorized by muscle group or type so that I candiversify
 my workout routine and target specific areas of my body.
 • Acceptance Criteria:
  -Browse exercises organized by muscle group, equipment needed, or exercise type (e.g., strength training, cardio).
  -View detailed descriptions and instructions for each exercise, including proper form and technique.
  -Filter and search functionality to easily find exercises based on specific criteria.
 
-3. As a physical therapist, I want to review feedback from my patients regarding the difficulty of their exercises and any
+C. As a physical therapist, I want to review feedback from my patients regarding the difficulty of their exercises and any
 questions or concerns they may have, so that I can provide appropriate guidance and adjustments to their rehabilitation program.
 • Acceptance Criteria:
  -Receive notifications for new feedback submissions from patients.
@@ -408,12 +266,6 @@ MVP addresses the specific needs and expectations of the target users.
 <----------------------------------------------------------------------------------------------------------------------------->
 
 6. Mockups
- If there is any visual interface to your Portfolio Project, this section is required. If your project lives on the commandline,
- or in script, then do not include this section. Use a prototyping tool, like Balsamiq, to draft your user-facing visual
- interfaces.
- In a section called “Mockups”:
--Include a mockup of each view that will need to be created for your MVP
-Answer:
 
 • Mockup 1: Exercise Selection and Scheduling
 
@@ -449,14 +301,6 @@ the design and development process for the MVP.
 
 Part3
 1. Column Headers
- Set up your Trello board with the following columns:
--Proposed
--Approved
--In Progress
--Dev Complete
--Tested
--Deployed
-Answer:
 
 -Proposed: This column is where new tasks or user stories are initially added for consideration.
 -Approved: Once a task or user story is reviewed and approved for development, it moves to this column.
@@ -471,10 +315,6 @@ These columns provide a clear workflow for managing the progress of tasks and us
 <----------------------------------------------------------------------------------------------------------------------------->
 
 2. Create Cards
- In the “proposed” column, create cards to fully represent the engineering tasks necessary to implement to satisfy the User
- Stories defined for your MVP. For each card, attach detailed descriptions, mockups, diagrams or technical specifications
- relevant to the engineering task.
-Answer:
 
 Here are the cards created for the proposed column, each representing an engineering task necessary to implement the User
 Stories for the MVP of the My-PT application:
@@ -504,34 +344,32 @@ specifications, to provide clear guidance for the development team.
 <----------------------------------------------------------------------------------------------------------------------------->
 
 3. Assign cards
- For each card, assign ownership to a team member. This should make sense given the roles specified in the project proposal.
-Answer:
 
 • Task: Implement Exercise Selection and Scheduling View
  -Assigned to: 
 • Task: Develop Exercise Details Page
- -Assigned to: ?
+ -Assigned to: Omar
 • Task: Enable Feedback Submission Feature
- -Assigned to: ?
+ -Assigned to: Rebal
 • Task: Backend API for Exercise Retrieval
- -Assigned to: ?
+ -Assigned to: Omar
 • Task: User Authentication and Authorization
- -Assigned to: ?
+ -Assigned to: Rebal
 
-Why did you ensure to assigning tasks this way?
+Assigning tasks in this way ensures that each team member can leverage their strengths and expertise effectively, leading
+to a more efficient and successful project outcome. By assigning tasks in this way, each team member can focus on their areas
+of expertise, collaborate effectively, and contribute to the project's success. This division of labor maximizes efficiency,
+minimizes errors, and ultimately leads to a high-quality product that meets the needs of users.
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
 4. Invite collaborators
- Invite the technical staff to be a collaborator on the Trello board so that each proposed task can be commented upon and
- moved into the approved column. 
-Answer:
+
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
 5. Set Due Dates
- For each task, based on priority and dependencies, assign a due date within the 2 week development window.
-Answer:
+
 • Task: Implement Exercise Selection and Scheduling View
  -Due Date:
 • Task: Develop Exercise Details Page
@@ -546,13 +384,6 @@ Answer:
 <----------------------------------------------------------------------------------------------------------------------------->
 
 6. Add a few mandatory tasks
- Include the following tasks to the “Approved” column:
--Create presentation
--Create project landing page
--Write comprehensive README.md
--Make demo of the project
--Write blog post
-Answer:
 
 • Task: Create Presentation
  -Description: Prepare a presentation outlining the features, functionality, and development process of the My-PT project.

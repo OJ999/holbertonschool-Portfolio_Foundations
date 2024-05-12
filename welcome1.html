@@ -57,6 +57,7 @@
 
 
   <!-- ======= Hero Section ======= -->
+
 <!-- ======= Services Section ======= -->
 <section id="services" class="services">
   <div class="services">
@@ -156,179 +157,117 @@
       </div>
     </section>
     
-    <!-- Edit Profile Popup -->
-    <div id="edit-profile-popup" class="popup">
-      <div class="popup-content">
-        <span class="close">&times;</span>
-        <h2>Edit Profile</h2>
-        <form id="edit-profile-form" action="#" method="post">
-          <label for="bio">Bio:</label>
-          <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Write a short bio..."></textarea>
-          <br>
-          <label for="birthday">Birthday:</label>
-          <input type="text" id="birthday" name="birthday" placeholder="5 Feb 1999">
-          <br>
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Omarj819@gmail.com">
-          <br>
-          <label for="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" placeholder="+961 71 265 832">
-          <br>
-          <label for="city">City:</label>
-          <input type="text" id="city" name="city" placeholder="Beirut, Lebanon">
-          <br>
-          <label for="profile_picture">Profile Picture:</label>
-          <input type="file" name="profile_picture" id="profile_picture">
-          <br>
-          <button type="submit" class="save-changes-button">Save Changes</button>
-        </form>
+   <!-- Edit Profile Popup -->
+<div id="edit-profile-popup" class="popup">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <h2>Edit Profile</h2>
+    <form id="edit-profile-form" action="#" method="post">
+      <div class="form-group">
+        <label for="birthday">Birthday:</label>
+        <input type="text" id="birthday" name="birthday" placeholder="5 Feb 1999">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Omarj819@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+961 71 265 832">
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" placeholder="Beirut, Lebanon">
+      </div>
+      <div class="form-group">
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" name="profile_picture" id="profile_picture">
+      </div>
+      <button type="submit" class="save-changes-button">Save Changes</button>
+    </form>
+  </div>
+</div>
 
     
     <!-- ======= Testimonials Section ======= -->
-    <section id="weekly-schedule">
+    <section id="Schedule" class="Schedule">
       <div class="section-title">
         <h2>Schedule</h2>
       </div>
-      <div class="days">
-        <div class="day">
-          <h3>Monday</h3>
-          <button class="start" onclick="addNote('monday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="monday-notes"></ul>
+      <div class="row">
+        
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+                <h2>Monday</h2>
+                <div class="button-container">
+                    <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+                    <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
+                </div>
+            </div>
         </div>
-        <div class="day">
-          <h3>Tuesday</h3>
-          <button class="start" onclick="addNote('tuesday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="tuesday-notes"></ul>
+        
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box iconbox-blue">
+              <h2>Tuesday</h2>
+              <div class="button-container">
+                <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+                <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box iconbox-blue">
+            <h2>Wednesday</h2>
+            <div class="button-container">
+              <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+              <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
+            </div>
         </div>
-        <div class="day">
-          <h3>Wednesday</h3>
-          <button class="start" onclick="addNote('wednesday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="wednesday-notes"></ul>
-        </div>
-        <div class="day">
-          <h3>Thursday</h3>
-          <button class="start" onclick="addNote('thursday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="thursday-notes"></ul>
-        </div>
-        <div class="day">
-          <h3>Friday</h3>
-          <button class="start" onclick="addNote('friday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="friday-notes"></ul>
-        </div>
-        <div class="day">
-          <h3>Saturday</h3>
-          <button class="start" onclick="addNote('saturday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="saturday-notes"></ul>
-        </div>
-        <div class="day">
-          <h3>Sunday</h3>
-          <button class="start" onclick="addNote('sunday')">
-            Start
-          </button>
-          <button class="edit" onclick="editNote('')">
-            Edit
-          </button>
-          <button class="help" onclick="help('')">
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
-            <lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#121331,secondary:#1663c7"
-              style="width:25px;height:25px">
-            </lord-icon>
-          </button>
-          <ul id="sunday-notes"></ul>
+    </div>
+
+    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+      <div class="icon-box iconbox-blue">
+          <h2>Thursday</h2>
+          <div class="button-container">
+            <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+            <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
+          </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+      <div class="icon-box iconbox-blue">
+        <h2>Friday</h2>
+        <div class="button-container">
+          <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+          <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
         </div>
       </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+      <div class="icon-box iconbox-blue">
+      <h2>Saturday</h2>
+      <div class="button-container">
+        <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+        <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+    <div class="icon-box iconbox-blue">
+      <h2>Sunday</h2>
+      <div class="button-container">
+        <Button type="button" class="btn btn-outline-success btn-sm">Start</Button>
+        <Button type="button" class="btn btn-outline-secondary btn-sm">Edit</Button>
+      </div>
+    </div>
+  </div>
+</div>
     </section>
     
-      
       <!-- End Testimonials Section -->
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">

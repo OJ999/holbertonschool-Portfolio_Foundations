@@ -597,6 +597,43 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #0e87d7;
 }
 
+/*--------------------------------------------------------------
+# Schedule
+--------------------------------------------------------------*/
+.Schedule .icon-box {
+  text-align: center;
+  padding: 20px 20px 30px 20px;
+  transition: all ease-in-out 0.3s;
+  background: #fff;
+  box-shadow: 5px 5px 90px 5px rgba(0, 90, 145, 0.077);
+}
+
+.Schedule .icon-box .button-container {
+  margin: 0 auto;
+  width: 200px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+  position: relative;
+}
+
+.Schedule .icon-box .button-container{
+  font-size: 36px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.Schedule .icon-box .icon svg path {
+  transition: 0.5s;
+  fill: #f5f5f5;
+}
+
+.Schedule .icon-box:hover {
+  border-color: #fff;
+  box-shadow: 0px 0 35px 0 rgba(0, 115, 157, 0.33);
+}
   
   /*--------------------------------------------------------------
   # Contact
