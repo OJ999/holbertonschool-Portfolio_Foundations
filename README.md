@@ -1,6 +1,6 @@
 My-PT ~ Your Personalized Workout Companion
 
-Screenshot 2024-05-12 191251.png
+assets/img/Screenshot 2024-05-12 191251.png
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
@@ -166,7 +166,7 @@ Part2
 
 2. Architecture
 
-Architecture.pdf
+assets/img/Architecture.pdf
 
 This architecture ensures a smooth flow of data from the client interface through the frontend, backend, and database layers,
 providing users with a seamless experience while interacting with the My-PT application.
@@ -216,7 +216,7 @@ C. 3rd Party APIs:
 
 4. Data Modelling
 
-Data_Modelling.pdf
+assets/img/Data_Modelling.pdf
 
 This data model represents the core entities and relationships within the My-PT application. Users can schedule workouts,
 which consist of multiple exercises. They can also provide feedback on their workouts or ask questions to their therapists.
