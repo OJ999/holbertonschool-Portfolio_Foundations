@@ -1,6 +1,6 @@
 My-PT ~ Your Personalized Workout Companion
 
-c:\Users\lenovo\Pictures\Screenshots\Screenshot 2024-05-12 191251.png
+Screenshot 2024-05-12 191251.png
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
