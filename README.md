@@ -6,15 +6,18 @@ Screenshot 2024-05-12 191251.png
 
 2. Team
 
- Omar Jaber 
+ Omar Jaber; 
  Rebal 
 
 • Roles:
-Project Manager, Lead Developer, UI/UX Designer, Quality Assurance Engineer
- Omar Jaber:
- Rebal :
+ Omar Jaber: Project Manager, UI/UX Designer
+ Rebal : Lead Developer, Quality Assurance Engineer
 
 • Reasons for Roles:
+Assigning roles in this way ensures that each team member can leverage their strengths and expertise effectively, leading
+to a more efficient and successful project outcome. Each team member can focus on their areas
+of expertise, collaborate effectively, and contribute to the project's success. This division of labor maximizes efficiency,
+minimizes errors, and ultimately leads to a high-quality product that meets the needs of users.
 
 <----------------------------------------------------------------------------------------------------------------------------->
 
