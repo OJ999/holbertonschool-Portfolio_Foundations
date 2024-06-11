@@ -201,6 +201,91 @@
       });
   });
 
+// Get modal element
+var modal = document.getElementById("editModal");
+
+// Get the button that opens the modal
+var editButtons = document.querySelectorAll(".edit-button");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Get elements inside the modal
+var modalDayTitle = document.getElementById("modalDayTitle");
+var exerciseName = document.getElementById("exerciseName");
+var exerciseTime = document.getElementById("exerciseTime");
+var exerciseSets = document.getElementById("exerciseSets");
+var exerciseBreak = document.getElementById("exerciseBreak");
+var addExerciseBtn = document.getElementById("addExerciseBtn");
+var exerciseList = document.getElementById("exerciseList");
+
+// Store exercises for each day
+var exercises = {};
+
+// When the user clicks an edit button, open the modal
+editButtons.forEach(button => {
+  button.onclick = function() {
+    var day = this.getAttribute("data-day");
+    modalDayTitle.textContent = day;
+    exerciseList.innerHTML = '';
+    if (exercises[day]) {
+      exercises[day].forEach(exercise => {
+        addExerciseToList(exercise);
+      });
+    }
+    modal.style.display = "block";
+  };
+});
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+// Add exercise to the list
+addExerciseBtn.onclick = function() {
+  var name = exerciseName.value.trim();
+  var time = exerciseTime.value.trim();
+  var sets = exerciseSets.value.trim();
+  var breakTime = exerciseBreak.value.trim();
+  
+  if (name !== '' && time !== '' && sets !== '' && breakTime !== '') {
+    var exercise = {
+      name: name,
+      time: time,
+      sets: sets,
+      breakTime: breakTime
+    };
+    
+    var day = modalDayTitle.textContent;
+    if (!exercises[day]) {
+      exercises[day] = [];
+    }
+    exercises[day].push(exercise);
+    addExerciseToList(exercise);
+    
+    // Clear inputs
+    exerciseName.value = '';
+    exerciseTime.value = '';
+    exerciseSets.value = '';
+    exerciseBreak.value = '';
+  }
+};
+
+function addExerciseToList(exercise) {
+  var li = document.createElement("li");
+  li.textContent = `${exercise.name} (${exercise.time}) - ${exercise.sets} sets - ${exercise.breakTime} break`;
+  exerciseList.appendChild(li);
+}
+
+
   /**
    * Skills animation
    */

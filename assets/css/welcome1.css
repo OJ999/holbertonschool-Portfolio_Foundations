@@ -720,7 +720,212 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #fff;
   box-shadow: 0px 0 35px 0 rgba(0, 115, 157, 0.33);
 }
-  
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#exerciseList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#exerciseInputContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#exerciseInputContainer input {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#addExerciseBtn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1da1f2;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#addExerciseBtn:hover {
+  background-color: #0e87d7;
+}
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.Services .icon-box {
+  text-align: center;
+  padding: 70px 20px 80px 20px;
+  transition: all ease-in-out 0.3s;
+  background: #fff;
+  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+}
+
+.Services .icon-box .icon {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+  position: relative;
+}
+
+.Services .icon-box .icon i {
+  font-size: 36px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.Services .icon-box .icon svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Services .icon-box .icon svg path {
+  transition: 0.5s;
+  fill: #f5f5f5;
+}
+
+.Services .icon-box h4 {
+  font-weight: 600;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+}
+
+.Services .icon-box h4 a {
+  color: #45505b;
+  transition: ease-in-out 0.3s;
+}
+
+.Services .icon-box p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.Services .icon-box:hover {
+  border-color: #fff;
+  box-shadow: 0px 0 35px 0 rgba(0, 0, 0, 0.08);
+}
+
+.Services .iconbox-blue i {
+  color: #47aeff;
+}
+
+.Services .iconbox-blue:hover .icon i {
+  color: #fff;
+}
+
+.Services .iconbox-blue:hover .icon circle {
+  fill: #47aeff;
+}
+
+.Services .iconbox-orange i {
+  color: #ffa76e;
+}
+
+.Services .iconbox-orange:hover .icon i {
+  color: #fff;
+}
+
+.Services .iconbox-orange:hover .icon circle {
+  fill: #ffa76e;
+}
+
+.Services .iconbox-pink i {
+  color: #e80368;
+}
+
+.Services .iconbox-pink:hover .icon i {
+  color: #fff;
+}
+
+.Services .iconbox-pink:hover .icon circle {
+  fill: #e80368;
+}
+
+.Services .iconbox-yellow i {
+  color: #ffbb2c;
+}
+
+.Services .iconbox-yellow:hover .icon i {
+  color: #fff;
+}
+
+.Services .iconbox-yellow:hover .icon circle {
+  fill: #ffbb2c;
+}
+
+.Services .iconbox-red i {
+  color: #ff5828;
+}
+
+.Services .iconbox-red:hover .icon i {
+  color: #fff;
+}
+
+.Services .iconbox-red:hover .icon circle {
+  fill: #ff5828;
+}
+
+.Services .iconbox-teal i {
+  color: #11dbcf;
+}
+
+.Services .iconbox-teal:hover .icon i {
+  color: #fff;
+}
+
+.Services .iconbox-teal:hover .icon circle {
+  fill: #11dbcf;
+}
+
+
+
   /*--------------------------------------------------------------
   # Contact
   --------------------------------------------------------------*/
