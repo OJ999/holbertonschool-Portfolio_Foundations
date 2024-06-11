@@ -98,7 +98,7 @@
   })
 
   /**
-   * Scrool with ofset on links with a class name .scrollto
+   * Scroll with offset on links with a class name .scrollto
    */
   on('click', '.scrollto', function(e) {
     if (select(this.hash)) {
@@ -116,7 +116,7 @@
   }, true)
 
   /**
-   * Scroll with ofset on page load with hash links in the url
+   * Scroll with offset on page load with hash links in the url
    */
   window.addEventListener('load', () => {
     if (window.location.hash) {
@@ -170,7 +170,7 @@
   }
 
   /**
-   * Porfolio isotope and filter
+   * Portfolio isotope and filter
    */
   window.addEventListener('load', () => {
     let portfolioContainer = select('.portfolio-container');
@@ -268,3 +268,50 @@
   new PureCounter();
 
 })()
+
+document.addEventListener("DOMContentLoaded", () => {
+  const userAccounts = [{ username: "x", password: "12345678" }];
+
+  function registerUser(event) {
+    event.preventDefault();
+    const usernameInput = document.getElementById("popupName").value.trim();
+    const surnameInput = document.getElementById("popupSurname").value.trim();
+    const passwordInput = document.getElementById("popupPassword").value.trim();
+    const emailInput = document.getElementById("popupEmail").value.trim();
+
+    if (userAccounts.some(user => user.username === usernameInput)) {
+      alert("Username already exists. Please choose another username.");
+      return;
+    }
+
+    const newUser = { username: usernameInput, surname: surnameInput, password: passwordInput, email: emailInput };
+    userAccounts.push(newUser);
+    window.location.href = "signupform.html";
+  }
+
+  function signIn(event) {
+    event.preventDefault();
+    const usernameInput = document.getElementById("username").value.trim();
+    const passwordInput = document.getElementById("password").value.trim();
+
+    const user = userAccounts.find(user => user.username === usernameInput && user.password === passwordInput);
+    if (user) {
+      window.location.href = "welcome1.html";
+    } else {
+      document.getElementById("passwordError").innerText = "Incorrect username or password.";
+    }
+  }
+
+  function showPopup() {
+    document.getElementById("popupContainer").style.display = "block";
+  }
+
+  function hidePopup() {
+    document.getElementById("popupContainer").style.display = "none";
+  }
+
+  document.getElementById("signupForm").addEventListener("submit", signIn);
+  document.getElementById("popup").addEventListener("submit", registerUser);
+  document.getElementById("Register").addEventListener("click", showPopup);
+  document.querySelector(".close").addEventListener("click", hidePopup);
+});

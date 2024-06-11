@@ -125,64 +125,6 @@
     </form>
   </div>
 
-  <script>
-    // Define an array to store user accounts
-    var userAccounts = [
-        { username: "x", password: "12345678" }
-    ];
-    // Function to handle user registration
-    function registerUser(event) {
-        event.preventDefault(); // Prevent default form submission behavior
-        console.log("Registering user...");
-        // Retrieve username, password, and email from input fields
-        var usernameInput = document.getElementById("popupUsername").value.trim();
-        var passwordInput = document.getElementById("popupPassword").value.trim();
-        var emailInput = document.getElementById("popupEmail").value.trim();
-        console.log("Username Input:", usernameInput);
-        console.log("Password Input:", passwordInput);
-        console.log("Email Input:", emailInput);
-        // Check if the username is already taken
-        if (userAccounts.some(user => user.username === usernameInput)) {
-            alert("Username already exists. Please choose another username.");
-            return;
-        }
-        // Create a new user account and push it to the userAccounts array
-        var newUser = { username: usernameInput, password: passwordInput, email: emailInput };
-        console.log("New User:", newUser);
-        userAccounts.push(newUser);
-        console.log("User Accounts after registration:", userAccounts);
-        // Redirect to signupform.html after registration
-        window.location.href = "signupform.html";
-    }
-    // Function to handle user sign-in
-    function signIn(event) {
-        event.preventDefault(); // Prevent default form submission behavior
-        console.log("Signing in...");
-        var usernameInput = document.getElementById("username").value.trim();
-        var passwordInput = document.getElementById("password").value.trim();
-        // Check if the username and password match
-        var user = userAccounts.find(user => user.username === usernameInput && user.password === passwordInput);
-        if (user) {
-            // Redirect to welcome1.html if credentials are correct
-            window.location.href = "welcome1.html";
-        } else {
-            // Display error message if credentials are incorrect
-            document.getElementById("passwordError").innerText = "Incorrect username or password.";
-        }
-    }
-    // Function to display the registration pop-up
-    function showPopup() {
-        var popup = document.getElementById("popupContainer");
-        popup.style.display = "block";
-    }
-    // Function to hide the registration pop-up
-    function hidePopup() {
-        var popup = document.getElementById("popupContainer");
-        popup.style.display = "none";
-    }
-</script>
-  
-
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
