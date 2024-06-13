@@ -402,24 +402,21 @@ function addExerciseToList(exercise) {
 })();
 
 document.addEventListener("DOMContentLoaded", function() {
-  var modal = document.getElementById("edit-profile-popup");
-  var btn = document.querySelector(".edit-profile-button");
-  var span = document.querySelector(".close");
-  btn.addEventListener("click", function() {
-      modal.style.display = "block";
+    var editProfilePopup = document.getElementById("edit-profile-popup");
+    var editProfileBtn = document.querySelector(".edit-profile-button");
+    var closeEditProfile = editProfilePopup.querySelector(".close");
+  
+    editProfileBtn.addEventListener("click", function() {
+        editProfilePopup.style.display = "block";
+    });
+  
+    closeEditProfile.addEventListener("click", function() {
+        editProfilePopup.style.display = "none";
+    });
+  
+    window.addEventListener("click", function(event) {
+        if (event.target == editProfilePopup) {
+            editProfilePopup.style.display = "none";
+        }
+    });
   });
-  span.addEventListener("click", function() {
-      modal.style.display = "none";
-  });
-  window.addEventListener("click", function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  });
-  var form = document.getElementById("edit-profile-form");
-  form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      modal.style.display = "none";
-      // Perform form submission actions here
-  });
-});

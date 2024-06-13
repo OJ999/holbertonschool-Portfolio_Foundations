@@ -222,17 +222,15 @@ input[type="email"] {
 
 /* Styles for the pop-up */
 #popupContainer {
-  display: center;
-  position: fixed;
-  bottom: 0;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f1f1f1ee;
-  border-top: 1px solid #ccc;
-  padding: 20px;
-  box-sizing: border-box;
-  z-index: 9999;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(255, 255, 255, 0.922); /* Black w/ opacity to obscure background */
 }
 
 /* Styles for the close button */
