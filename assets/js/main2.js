@@ -134,71 +134,178 @@
       });
   }
 
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const messagesLink = document.getElementById('messages-link');
+    const friendsLink = document.getElementById('friends-link');
+    const messagesModal = document.getElementById('messages-modal');
+    const friendsModal = document.getElementById('friends-modal');
+    const closeMessagesBtn = messagesModal.querySelector('.close');
+    const closeFriendsBtn = friendsModal.querySelector('.close');
+    const sendMessageBtn = document.getElementById('send-message');
+    const messageInput = document.getElementById('message-input');
+    const messagesContainer = document.getElementById('messages-container');
+    const searchMessagesInput = document.getElementById('search-messages');
+    const composeMessageBtn = document.getElementById('compose-message-btn');
+    const searchFriendsInput = document.getElementById('search-friends');
+    const friendsContainer = document.getElementById('friends-container');
+    const addFriendBtn = document.getElementById('add-friend-btn');
+  
+    messagesLink.onclick = function() {
+      messagesModal.style.display = "block";
+    }
+  
+    friendsLink.onclick = function() {
+      friendsModal.style.display = "block";
+    }
+  
+    closeMessagesBtn.onclick = function() {
+      messagesModal.style.display = "none";
+    }
+  
+    closeFriendsBtn.onclick = function() {
+      friendsModal.style.display = "none";
+    }
+  
+    window.onclick = function(event) {
+      if (event.target == messagesModal) {
+        messagesModal.style.display = "none";
+      }
+      if (event.target == friendsModal) {
+        friendsModal.style.display = "none";
+      }
+    }
+  
+    sendMessageBtn.onclick = function() {
+      const message = messageInput.value.trim();
+      if (message) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messagesContainer.appendChild(messageElement);
+        messageInput.value = '';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }
+  
+    searchMessagesInput.oninput = function() {
+      const query = searchMessagesInput.value.toLowerCase();
+      const messages = messagesContainer.querySelectorAll('div');
+      messages.forEach(message => {
+        if (message.textContent.toLowerCase().includes(query)) {
+          message.style.display = '';
+        } else {
+          message.style.display = 'none';
+        }
+      });
+    }
+  
+    composeMessageBtn.onclick = function() {
+      messageInput.focus();
+    }
+  
+    searchFriendsInput.oninput = function() {
+      const query = searchFriendsInput.value.toLowerCase();
+      const friends = friendsContainer.querySelectorAll('div');
+      friends.forEach(friend => {
+        if (friend.textContent.toLowerCase().includes(query)) {
+          friend.style.display = '';
+        } else {
+          friend.style.display = 'none';
+        }
+      });
+    }
+  
+    addFriendBtn.onclick = function() {
+      const friendName = prompt("Enter the name of the new friend:");
+      if (friendName) {
+        const friendElement = document.createElement('div');
+        friendElement.textContent = friendName;
+        friendsContainer.appendChild(friendElement);
+        friendsContainer.scrollTop = friendsContainer.scrollHeight;
+      }
+    }
+  });
+  
+
+  
+
+
+
+
   /**
    * Schedule generation
    */
   document.addEventListener("DOMContentLoaded", function() {
-      const scheduleContainer = document.getElementById("schedule");
-      const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-      for (let i = 0; i < 7; i++) {
-          const day = days[i];
-          const daySchedule = document.createElement("div");
-          daySchedule.classList.add("day-schedule");
-          daySchedule.innerHTML = `<h4>${day}</h4>`;
-
-          const exerciseForm = document.createElement("form");
-          exerciseForm.innerHTML = `
-              <label for="exercise-name-${i}">Exercise Name:</label>
-              <input type="text" id="exercise-name-${i}" required>
-              <label for="rest-time-${i}">Rest Time (in seconds):</label>
-              <input type="number" id="rest-time-${i}" required>
-              <label for="rep-time-${i}">Rep Time (in seconds):</label>
-              <input type="number" id="rep-time-${i}" required>
-              <label for="total-reps-${i}">Total Reps:</label>
-              <input type="number" id="total-reps-${i}" required>
-              <button type="button" id="add-exercise-${i}">Add Exercise</button>
-              <ul id="exercise-list-${i}" class="exercise-list"></ul>
-              <p>Total Time: <span id="total-time-${i}">0</span> seconds</p>
-          `;
-          daySchedule.appendChild(exerciseForm);
-          scheduleContainer.appendChild(daySchedule);
-
-          const addExerciseBtn = document.getElementById(`add-exercise-${i}`);
-          const exerciseList = document.getElementById(`exercise-list-${i}`);
-          const totalTimeDisplay = document.getElementById(`total-time-${i}`);
-          addExerciseBtn.addEventListener("click", function() {
-              const exerciseName = document.getElementById(`exercise-name-${i}`).value;
-              const restTime = parseInt(document.getElementById(`rest-time-${i}`).value);
-              const repTime = parseInt(document.getElementById(`rep-time-${i}`).value);
-              const totalReps = parseInt(document.getElementById(`total-reps-${i}`).value);
-              const totalTime = (restTime + repTime) * totalReps;
-              totalTimeDisplay.textContent = parseInt(totalTimeDisplay.textContent) + totalTime;
-              const exerciseItem = document.createElement("li");
-              exerciseItem.textContent = `${exerciseName} (Rest: ${restTime}s, Rep: ${repTime}s, Total Reps: ${totalReps})`;
-              exerciseList.appendChild(exerciseItem);
+    var modal = document.getElementById("editModal");
+    var editButtons = document.querySelectorAll(".edit-button");
+    var closeBtn = document.querySelector("#editModal .close");
+  
+    var modalDayTitle = document.getElementById("modalDayTitle");
+    var exerciseName = document.getElementById("exerciseName");
+    var exerciseTime = document.getElementById("exerciseTime");
+    var exerciseSets = document.getElementById("exerciseSets");
+    var exerciseBreak = document.getElementById("exerciseBreak");
+    var addExerciseBtn = document.getElementById("addExerciseBtn");
+    var exerciseList = document.getElementById("exerciseList");
+  
+    var exercises = {};
+  
+    editButtons.forEach(button => {
+      button.onclick = function() {
+        var day = this.getAttribute("data-day");
+        modalDayTitle.textContent = day;
+        exerciseList.innerHTML = '';
+        if (exercises[day]) {
+          exercises[day].forEach(exercise => {
+            addExerciseToList(exercise);
           });
+        }
+        modal.style.display = "block";
+      };
+    });
+  
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    };
+  
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
       }
-  });
-
-  /**
-   * Schedule Button
-   */
-  document.addEventListener("DOMContentLoaded", function() {
-      const schedulePopup = document.getElementById("schedulePopup");
-      const schedulePopupBtn = document.getElementById("schedulePopupBtn");
-      schedulePopupBtn.addEventListener("click", function(event) {
-          event.preventDefault();
-          schedulePopup.style.display = "block";
-      });
-      const closeBtn = schedulePopup.querySelector(".Close");
-      closeBtn.addEventListener("click", function() {
-          schedulePopup.style.display = "none";
-      });
-      window.addEventListener("click", function(event) {
-          if (event.target === schedulePopup) {
-              schedulePopup.style.display = "none";
-          }
-      });
+    };
+  
+    addExerciseBtn.onclick = function() {
+      var name = exerciseName.value.trim();
+      var time = exerciseTime.value.trim();
+      var sets = exerciseSets.value.trim();
+      var breakTime = exerciseBreak.value.trim();
+      
+      if (name !== '' && time !== '' && sets !== '' && breakTime !== '') {
+        var exercise = {
+          name: name,
+          time: time,
+          sets: sets,
+          breakTime: breakTime
+        };
+        
+        var day = modalDayTitle.textContent;
+        if (!exercises[day]) {
+          exercises[day] = [];
+        }
+        exercises[day].push(exercise);
+        addExerciseToList(exercise);
+        
+        exerciseName.value = '';
+        exerciseTime.value = '';
+        exerciseSets.value = '';
+        exerciseBreak.value = '';
+      }
+    };
+  
+    function addExerciseToList(exercise) {
+      var li = document.createElement("li");
+      li.textContent = `${exercise.name} (${exercise.time}) - ${exercise.sets} sets - ${exercise.breakTime} break`;
+      exerciseList.appendChild(li);
+    }
   });
 
 // Get modal element
