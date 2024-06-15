@@ -147,8 +147,11 @@
     const searchMessagesInput = document.getElementById('search-messages');
     const composeMessageBtn = document.getElementById('compose-message-btn');
     const searchFriendsInput = document.getElementById('search-friends');
-    const friendsContainer = document.getElementById('friends-container');
+    const friendsListContainer = document.getElementById('friends-list-container');
+    const friendRequestsContainer = document.getElementById('friend-requests-container');
     const addFriendBtn = document.getElementById('add-friend-btn');
+    const friendsListBtn = document.getElementById('friends-list-btn');
+    const friendRequestsBtn = document.getElementById('friend-requests-btn');
   
     messagesLink.onclick = function() {
       messagesModal.style.display = "block";
@@ -156,6 +159,7 @@
   
     friendsLink.onclick = function() {
       friendsModal.style.display = "block";
+      showFriendsList();
     }
   
     closeMessagesBtn.onclick = function() {
@@ -204,7 +208,7 @@
   
     searchFriendsInput.oninput = function() {
       const query = searchFriendsInput.value.toLowerCase();
-      const friends = friendsContainer.querySelectorAll('div');
+      const friends = friendsListContainer.querySelectorAll('div');
       friends.forEach(friend => {
         if (friend.textContent.toLowerCase().includes(query)) {
           friend.style.display = '';
@@ -219,9 +223,31 @@
       if (friendName) {
         const friendElement = document.createElement('div');
         friendElement.textContent = friendName;
-        friendsContainer.appendChild(friendElement);
-        friendsContainer.scrollTop = friendsContainer.scrollHeight;
+        friendsListContainer.appendChild(friendElement);
+        friendsListContainer.scrollTop = friendsListContainer.scrollHeight;
       }
+    }
+  
+    friendsListBtn.onclick = function() {
+      showFriendsList();
+    }
+  
+    friendRequestsBtn.onclick = function() {
+      showFriendRequests();
+    }
+  
+    function showFriendsList() {
+      friendsListContainer.style.display = 'block';
+      friendRequestsContainer.style.display = 'none';
+      friendsListBtn.classList.add('active');
+      friendRequestsBtn.classList.remove('active');
+    }
+  
+    function showFriendRequests() {
+      friendsListContainer.style.display = 'none';
+      friendRequestsContainer.style.display = 'block';
+      friendsListBtn.classList.remove('active');
+      friendRequestsBtn.classList.add('active');
     }
   });
   

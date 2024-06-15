@@ -97,23 +97,31 @@
       </div>
     </div>
   
-    <div id="friends-modal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
+     <!-- Friends Modal -->
+  <div id="friends-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
         <h2>Friends</h2>
-        <div class="search-container">
-          <input type="text" id="search-friends" placeholder="Search Friends">
-          <i class="bi bi-search search-icon"></i>
-          <button id="add-friend-btn" class="compose-button">
-            <i class="bi bi-person-plus"></i>
-          </button>
-        </div>
-        <div id="friends-container">
-          <!-- Friends will be loaded here dynamically -->
-        </div>
+        <button id="add-friend-btn" class="compose-button">
+          <i class="bi bi-person-plus"></i>
+        </button>
+        <span class="close">&times;</span>
+      </div>
+      <div class="Search-container">
+        <input type="text" id="search-friends" placeholder="Search Friends">
+        <i class="bi bi-search search-icon"></i>
+      </div>
+      <div class="friends-navigation">
+        <button class="nav-button" id="friends-list-btn">Friends</button>
+        <button class="nav-button" id="friend-requests-btn">Friend Requests</button>
+      </div>
+      <div id="friends-container">
+        <!-- Friends list will be loaded here dynamically -->
       </div>
     </div>
+  </div>
   
+    <!-- Messages Modal -->
     <div id="messages-modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
