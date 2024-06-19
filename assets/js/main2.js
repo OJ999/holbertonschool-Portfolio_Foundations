@@ -389,44 +389,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Schedule generation
    */
-  document.addEventListener("DOMContentLoaded", function() {
-    var modal = document.getElementById("editModal");
-    var editButtons = document.querySelectorAll(".edit-button");
-    var closeBtn = document.querySelector("#editModal .close");
-  
-    var modalDayTitle = document.getElementById("modalDayTitle");
-    var exerciseName = document.getElementById("exerciseName");
-    var exerciseTime = document.getElementById("exerciseTime");
-    var exerciseSets = document.getElementById("exerciseSets");
-    var exerciseBreak = document.getElementById("exerciseBreak");
-    var addExerciseBtn = document.getElementById("addExerciseBtn");
-    var exerciseList = document.getElementById("exerciseList");
-  
+  document.addEventListener('DOMContentLoaded', function() {
+    var editProfilePopup = document.getElementById("edit-profile-popup");
+    var editProfileBtn = document.querySelector(".edit-profile-button");
+    var closeEditProfile = editProfilePopup.querySelector(".close");
+    var addExerciseBtn = document.getElementById('addExerciseBtn');
+    var exerciseName = document.getElementById('exerciseName');
+    var exerciseTime = document.getElementById('exerciseTime');
+    var exerciseSets = document.getElementById('exerciseSets');
+    var exerciseBreak = document.getElementById('exerciseBreak');
+    var exerciseList = document.getElementById('exerciseList');
+    var saveExercisesBtn = document.getElementById('saveExercisesBtn');
+    var modalDayTitle = document.getElementById('modalDayTitle');
+    var closeEditModal = document.querySelector("#editModal .close");
     var exercises = {};
   
-    editButtons.forEach(button => {
-      button.onclick = function() {
-        var day = this.getAttribute("data-day");
-        modalDayTitle.textContent = day;
-        exerciseList.innerHTML = '';
-        if (exercises[day]) {
-          exercises[day].forEach(exercise => {
-            addExerciseToList(exercise);
-          });
-        }
-        modal.style.display = "block";
-      };
+    editProfileBtn.addEventListener("click", function() {
+        editProfilePopup.style.display = "block";
     });
-  
-    closeBtn.onclick = function() {
-      modal.style.display = "none";
+    
+    closeEditProfile.addEventListener("click", function() {
+        editProfilePopup.style.display = "none";
+    });
+    closeEditModal.onclick = function() {
+      editModal.style.display = "none";
     };
-  
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
+    window.addEventListener("click", function(event) {
+        if (event.target == editProfilePopup) {
+            editProfilePopup.style.display = "none";
+        }
+    });
   
     addExerciseBtn.onclick = function() {
       var name = exerciseName.value.trim();
@@ -449,6 +441,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         exercises[day].push(exercise);
         addExerciseToList(exercise);
         
+        // Clear inputs
         exerciseName.value = '';
         exerciseTime.value = '';
         exerciseSets.value = '';
@@ -458,8 +451,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
     function addExerciseToList(exercise) {
       var li = document.createElement("li");
-      li.textContent = `${exercise.name} - ${exercise.time}s/Rep - ${exercise.sets} Sets - ${exercise.breakTime}s Break`;
+      li.textContent = `${exercise.name} - ${exercise.time}s / Rep - ${exercise.sets} Sets - ${exercise.breakTime}s Break`;
       exerciseList.appendChild(li);
+    }
+  
+    saveExercisesBtn.onclick = function() {
+      alert('Exercises saved successfully!');
+      document.getElementById('editModal').style.display = 'none';
     }
   });
 
@@ -619,24 +617,6 @@ function addExerciseToList(exercise) {
           delay: 5000,
           disableOnInteraction: false
       },
-      pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-      }
-  });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-      speed: 600,
-      loop: true,
-      autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-      },
-      slidesPerView: 'auto',
       pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
