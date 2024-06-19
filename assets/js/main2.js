@@ -134,123 +134,250 @@
       });
   }
 
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const messagesLink = document.getElementById('messages-link');
-    const friendsLink = document.getElementById('friends-link');
-    const messagesModal = document.getElementById('messages-modal');
-    const friendsModal = document.getElementById('friends-modal');
-    const closeMessagesBtn = messagesModal.querySelector('.close');
-    const closeFriendsBtn = friendsModal.querySelector('.close');
-    const sendMessageBtn = document.getElementById('send-message');
-    const messageInput = document.getElementById('message-input');
-    const messagesContainer = document.getElementById('messages-container');
-    const searchMessagesInput = document.getElementById('search-messages');
-    const composeMessageBtn = document.getElementById('compose-message-btn');
-    const searchFriendsInput = document.getElementById('search-friends');
-    const friendsListContainer = document.getElementById('friends-list-container');
-    const friendRequestsContainer = document.getElementById('friend-requests-container');
-    const addFriendBtn = document.getElementById('add-friend-btn');
-    const friendsListBtn = document.getElementById('friends-list-btn');
-    const friendRequestsBtn = document.getElementById('friend-requests-btn');
-  
-    messagesLink.onclick = function() {
-      messagesModal.style.display = "block";
-    }
-  
-    friendsLink.onclick = function() {
-      friendsModal.style.display = "block";
-      showFriendsList();
-    }
-  
-    closeMessagesBtn.onclick = function() {
-      messagesModal.style.display = "none";
-    }
-  
-    closeFriendsBtn.onclick = function() {
+document.addEventListener('DOMContentLoaded', (event) => {
+  const friendsLink = document.getElementById('friends-link');
+  const messagesLink = document.getElementById('messages-link');
+  const friendsModal = document.getElementById('friends-modal');
+  const messagesModal = document.getElementById('messages-modal');
+  const closeFriendsBtn = friendsModal.querySelector('.close');
+  const closeMessagesBtn = messagesModal.querySelector('.close');
+
+  const addFriendBtn = document.getElementById('add-friend-btn');
+  const friendsListBtn = document.getElementById('friends-list-btn');
+  const friendRequestsBtn = document.getElementById('friend-requests-btn');
+  const friendsListContainer = document.getElementById('friends-list-container');
+  const friendRequestsContainer = document.getElementById('friend-requests-container');
+  const searchFriendsInput = document.getElementById('search-friends');
+
+  const composeMessageBtn = document.getElementById('compose-message-btn');
+  const sendMessageBtn = document.getElementById('send-message');
+  const messageInput = document.getElementById('message-input');
+  const messagesContainer = document.getElementById('messages-container');
+  const searchMessagesInput = document.getElementById('search-messages');
+
+  friendsLink.onclick = function() {
+    friendsModal.style.display = "block";
+    showFriendsList();
+  }
+
+  messagesLink.onclick = function() {
+    messagesModal.style.display = "block";
+  }
+
+  closeFriendsBtn.onclick = function() {
+    friendsModal.style.display = "none";
+  }
+
+  closeMessagesBtn.onclick = function() {
+    messagesModal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == friendsModal) {
       friendsModal.style.display = "none";
     }
-  
-    window.onclick = function(event) {
-      if (event.target == messagesModal) {
-        messagesModal.style.display = "none";
-      }
-      if (event.target == friendsModal) {
-        friendsModal.style.display = "none";
-      }
+    if (event.target == messagesModal) {
+      messagesModal.style.display = "none";
     }
-  
-    sendMessageBtn.onclick = function() {
-      const message = messageInput.value.trim();
-      if (message) {
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        messagesContainer.appendChild(messageElement);
-        messageInput.value = '';
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-      }
+  }
+
+  addFriendBtn.onclick = function() {
+    const friendName = prompt("Enter the name of the new friend:");
+    if (friendName) {
+      const friendElement = document.createElement('div');
+      friendElement.textContent = friendName;
+      friendsListContainer.appendChild(friendElement);
+      friendsListContainer.scrollTop = friendsListContainer.scrollHeight;
     }
-  
-    searchMessagesInput.oninput = function() {
-      const query = searchMessagesInput.value.toLowerCase();
-      const messages = messagesContainer.querySelectorAll('div');
-      messages.forEach(message => {
-        if (message.textContent.toLowerCase().includes(query)) {
-          message.style.display = '';
+  }
+
+  friendsListBtn.onclick = function() {
+    showFriendsList();
+  }
+
+  friendRequestsBtn.onclick = function() {
+    showFriendRequests();
+  }
+
+  function showFriendsList() {
+    friendsListContainer.style.display = 'block';
+    friendRequestsContainer.style.display = 'none';
+    friendsListBtn.classList.add('active');
+    friendRequestsBtn.classList.remove('active');
+  }
+
+  function showFriendRequests() {
+    friendsListContainer.style.display = 'none';
+    friendRequestsContainer.style.display = 'block';
+    friendsListBtn.classList.remove('active');
+    friendRequestsBtn.classList.add('active');
+  }
+
+  searchFriendsInput.oninput = function() {
+    const query = searchFriendsInput.value.toLowerCase();
+    const friends = friendsListContainer.querySelectorAll('div');
+    friends.forEach(friend => {
+      if (friend.textContent.toLowerCase().includes(query)) {
+        friend.style.display = '';
+      } else {
+        friend.style.display = 'none';
+      }
+    });
+  }
+
+  composeMessageBtn.onclick = function() {
+    messageInput.focus();
+  }
+
+  sendMessageBtn.onclick = function() {
+    const message = messageInput.value.trim();
+    if (message) {
+      const messageElement = document.createElement('div');
+      messageElement.textContent = message;
+      messagesContainer.appendChild(messageElement);
+      messageInput.value = '';
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  }
+
+  searchMessagesInput.oninput = function() {
+    const query = searchMessagesInput.value.toLowerCase();
+    const messages = messagesContainer.querySelectorAll('div');
+    messages.forEach(message => {
+      if (message.textContent.toLowerCase().includes(query)) {
+        message.style.display = '';
+      } else {
+        message.style.display = 'none';
+      }
+    });
+  }
+
+  var cols = {},
+
+    messageIsOpen = false;
+
+  cols.showOverlay = function() {
+    document.body.classList.add('show-main-overlay');
+  };
+  cols.hideOverlay = function() {
+    document.body.classList.remove('show-main-overlay');
+  };
+
+  cols.showMessage = function() {
+    document.body.classList.add('show-message');
+    messageIsOpen = true;
+  };
+  cols.hideMessage = function() {
+    document.body.classList.remove('show-message');
+    document.querySelector('#main .message-list li').classList.remove('active');
+    messageIsOpen = false;
+  };
+
+  cols.showSidebar = function() {
+    document.body.classList.add('show-sidebar');
+  };
+  cols.hideSidebar = function() {
+    document.body.classList.remove('show-sidebar');
+  };
+
+  document.querySelector('.trigger-toggle-sidebar').addEventListener('click', function() {
+    cols.showSidebar();
+    cols.showOverlay();
+  });
+
+  document.querySelector('.trigger-message-close').addEventListener('click', function() {
+    cols.hideMessage();
+    cols.hideOverlay();
+  });
+
+  document.querySelector('#main .message-list').addEventListener('click', function(e) {
+    var item = e.target.closest('li'),
+      target = e.target;
+
+    if (target.tagName === 'LABEL') {
+      item.classList.toggle('selected');
+    } else {
+      if (messageIsOpen && item.classList.contains('active')) {
+        cols.hideMessage();
+        cols.hideOverlay();
+      } else {
+        if (messageIsOpen) {
+          cols.hideMessage();
+          item.classList.add('active');
+          setTimeout(function() {
+            cols.showMessage();
+          }, 300);
         } else {
-          message.style.display = 'none';
+          item.classList.add('active');
+          cols.showMessage();
         }
-      });
-    }
-  
-    composeMessageBtn.onclick = function() {
-      messageInput.focus();
-    }
-  
-    searchFriendsInput.oninput = function() {
-      const query = searchFriendsInput.value.toLowerCase();
-      const friends = friendsListContainer.querySelectorAll('div');
-      friends.forEach(friend => {
-        if (friend.textContent.toLowerCase().includes(query)) {
-          friend.style.display = '';
-        } else {
-          friend.style.display = 'none';
-        }
-      });
-    }
-  
-    addFriendBtn.onclick = function() {
-      const friendName = prompt("Enter the name of the new friend:");
-      if (friendName) {
-        const friendElement = document.createElement('div');
-        friendElement.textContent = friendName;
-        friendsListContainer.appendChild(friendElement);
-        friendsListContainer.scrollTop = friendsListContainer.scrollHeight;
+        cols.showOverlay();
       }
-    }
-  
-    friendsListBtn.onclick = function() {
-      showFriendsList();
-    }
-  
-    friendRequestsBtn.onclick = function() {
-      showFriendRequests();
-    }
-  
-    function showFriendsList() {
-      friendsListContainer.style.display = 'block';
-      friendRequestsContainer.style.display = 'none';
-      friendsListBtn.classList.add('active');
-      friendRequestsBtn.classList.remove('active');
-    }
-  
-    function showFriendRequests() {
-      friendsListContainer.style.display = 'none';
-      friendRequestsContainer.style.display = 'block';
-      friendsListBtn.classList.remove('active');
-      friendRequestsBtn.classList.add('active');
     }
   });
-  
+
+  document.querySelector('input[type=checkbox]').addEventListener('click', function(e) {
+    e.stopImmediatePropagation();
+  });
+
+  document.querySelector('#main > .overlay').addEventListener('click', function() {
+    cols.hideOverlay();
+    cols.hideMessage();
+    cols.hideSidebar();
+  });
+
+  var nanoScrollElements = document.querySelectorAll('.nano');
+  nanoScrollElements.forEach(function(element) {
+    $(element).nanoScroller();
+  });
+
+  document.querySelectorAll('a').forEach(function(element) {
+    element.addEventListener('click', function(e) {
+      e.preventDefault();
+    });
+  });
+
+  document.querySelector('.search-box input').addEventListener('focus', function() {
+    if (window.innerWidth <= 1360) {
+      cols.hideMessage();
+    }
+  });
+});
+document.addEventListener('DOMContentLoaded', (event) => {
+  const composeMessageBtn = document.getElementById('compose-message-btn');
+  const composeMessageModal = document.getElementById('compose-message-modal');
+  const closeComposeMessageBtn = composeMessageModal.querySelector('.close');
+
+  composeMessageBtn.onclick = function() {
+    composeMessageModal.style.display = "block";
+  }
+
+  closeComposeMessageBtn.onclick = function() {
+    composeMessageModal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == composeMessageModal) {
+      composeMessageModal.style.display = "none";
+    }
+  }
+
+  document.getElementById('mailForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const to = document.getElementById('to').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    console.log('To:', to);
+    console.log('Subject:', subject);
+    console.log('Message:', message);
+
+    // Simulate sending email
+    alert('Email sent successfully!');
+    composeMessageModal.style.display = "none";
+  });
+});
 
   
 
@@ -329,7 +456,7 @@
   
     function addExerciseToList(exercise) {
       var li = document.createElement("li");
-      li.textContent = `${exercise.name} (${exercise.time}) - ${exercise.sets} sets - ${exercise.breakTime} break`;
+      li.textContent = `${exercise.name} - ${exercise.time}s/Rep - ${exercise.sets} Sets - ${exercise.breakTime}s Break`;
       exerciseList.appendChild(li);
     }
   });
