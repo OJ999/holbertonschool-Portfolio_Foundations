@@ -343,6 +343,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   });
 });
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
   const composeMessageBtn = document.getElementById('compose-message-btn');
   const composeMessageModal = document.getElementById('compose-message-modal');
