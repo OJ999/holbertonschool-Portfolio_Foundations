@@ -390,76 +390,131 @@ document.addEventListener('DOMContentLoaded', (event) => {
    * Schedule generation
    */
   document.addEventListener('DOMContentLoaded', function() {
-    var editProfilePopup = document.getElementById("edit-profile-popup");
-    var editProfileBtn = document.querySelector(".edit-profile-button");
-    var closeEditProfile = editProfilePopup.querySelector(".close");
-    var addExerciseBtn = document.getElementById('addExerciseBtn');
-    var exerciseName = document.getElementById('exerciseName');
-    var exerciseTime = document.getElementById('exerciseTime');
-    var exerciseSets = document.getElementById('exerciseSets');
-    var exerciseBreak = document.getElementById('exerciseBreak');
-    var exerciseList = document.getElementById('exerciseList');
-    var saveExercisesBtn = document.getElementById('saveExercisesBtn');
-    var modalDayTitle = document.getElementById('modalDayTitle');
-    var closeEditModal = document.querySelector("#editModal .close");
-    var exercises = {};
+    const editModal = document.getElementById("editModal");
+    const addExerciseBtn = document.getElementById('addExerciseBtn');
+    const exerciseName = document.getElementById('exerciseName');
+    const exerciseTime = document.getElementById('exerciseTime');
+    const exerciseSets = document.getElementById('exerciseSets');
+    const exerciseBreak = document.getElementById('exerciseBreak');
+    const exerciseList = document.getElementById('exerciseList');
+    const saveExercisesBtn = document.getElementById('saveExercisesBtn');
+    const modalDayTitle = document.getElementById('modalDayTitle');
+    const closeEditModal = document.querySelector("#editModal .close");
   
-    editProfileBtn.addEventListener("click", function() {
-        editProfilePopup.style.display = "block";
-    });
-    
-    closeEditProfile.addEventListener("click", function() {
-        editProfilePopup.style.display = "none";
-    });
+    let exercises = {};
+    let currentEditIndex = null;
+  
     closeEditModal.onclick = function() {
       editModal.style.display = "none";
     };
-    window.addEventListener("click", function(event) {
-        if (event.target == editProfilePopup) {
-            editProfilePopup.style.display = "none";
-        }
+  
+    window.onclick = function(event) {
+      if (event.target == editModal) {
+        editModal.style.display = "none";
+      }
+    };
+  
+    document.querySelectorAll('.btn-outline-secondary').forEach(button => {
+      button.addEventListener('click', function() {
+        const day = button.getAttribute('data-day');
+        modalDayTitle.textContent = day;
+        updateExerciseList();
+        editModal.style.display = "block";
+      });
     });
   
     addExerciseBtn.onclick = function() {
-      var name = exerciseName.value.trim();
-      var time = exerciseTime.value.trim();
-      var sets = exerciseSets.value.trim();
-      var breakTime = exerciseBreak.value.trim();
+      const name = exerciseName.value.trim();
+      const time = exerciseTime.value.trim();
+      const sets = exerciseSets.value.trim();
+      const breakTime = exerciseBreak.value.trim();
       
-      if (name !== '' && time !== '' && sets !== '' && breakTime !== '') {
-        var exercise = {
+      if (name && time && sets && breakTime) {
+        const exercise = {
           name: name,
           time: time,
           sets: sets,
           breakTime: breakTime
         };
         
-        var day = modalDayTitle.textContent;
+        const day = modalDayTitle.textContent;
         if (!exercises[day]) {
           exercises[day] = [];
         }
-        exercises[day].push(exercise);
-        addExerciseToList(exercise);
-        
-        // Clear inputs
-        exerciseName.value = '';
-        exerciseTime.value = '';
-        exerciseSets.value = '';
-        exerciseBreak.value = '';
+  
+        if (currentEditIndex !== null) {
+          exercises[day][currentEditIndex] = exercise;
+          currentEditIndex = null;
+          addExerciseBtn.textContent = 'Add Exercise';
+        } else {
+          exercises[day].push(exercise);
+        }
+  
+        updateExerciseList();
+        clearInputs();
       }
     };
   
-    function addExerciseToList(exercise) {
-      var li = document.createElement("li");
-      li.textContent = `${exercise.name} - ${exercise.time}s / Rep - ${exercise.sets} Sets - ${exercise.breakTime}s Break`;
+    function updateExerciseList() {
+      exerciseList.innerHTML = '';
+      const day = modalDayTitle.textContent;
+      if (exercises[day]) {
+        exercises[day].forEach((exercise, index) => {
+          addExerciseToList(exercise, index);
+        });
+      }
+    }
+  
+    function addExerciseToList(exercise, index) {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${exercise.name} - ${exercise.time}s / Rep - ${exercise.sets} Sets - ${exercise.breakTime}s Break</span>
+        <div>
+          <button class="btn btn-outline-secondary btn-sm">Edit</button>
+          <button class="btn btn-outline-danger btn-sm">Delete</button>
+        </div>
+      `;
+  
+      const editButton = li.querySelector('.btn-outline-secondary');
+      const deleteButton = li.querySelector('.btn-outline-danger');
+  
+      editButton.onclick = function() {
+        currentEditIndex = index;
+        const day = modalDayTitle.textContent;
+        const exercise = exercises[day][index];
+        exerciseName.value = exercise.name;
+        exerciseTime.value = exercise.time;
+        exerciseSets.value = exercise.sets;
+        exerciseBreak.value = exercise.breakTime;
+        addExerciseBtn.textContent = 'Update Exercise';
+      };
+  
+      deleteButton.onclick = function() {
+        const day = modalDayTitle.textContent;
+        exercises[day].splice(index, 1);
+        updateExerciseList();
+      };
+  
       exerciseList.appendChild(li);
     }
   
     saveExercisesBtn.onclick = function() {
       alert('Exercises saved successfully!');
-      document.getElementById('editModal').style.display = 'none';
+      editModal.style.display = 'none';
+    };
+  
+    function clearInputs() {
+      exerciseName.value = '';
+      exerciseTime.value = '';
+      exerciseSets.value = '';
+      exerciseBreak.value = '';
     }
   });
+  
+  
+  
+  
+
 
 // Get modal element
 var modal = document.getElementById("editModal");

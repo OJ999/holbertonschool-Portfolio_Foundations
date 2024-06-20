@@ -25,7 +25,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/welcome1.css" rel="stylesheet">
+  <link href="assets/css/welcome2.css" rel="stylesheet">
 
  <!-- =======================================================
   * Template Name: MyPT
@@ -192,7 +192,7 @@
           </div>
           <div class="col-lg-8">
             <h2>X</h2>
-            <p class="fst-italic">Personal Trainer</p>
+            <p class="fst-italic">Software Engineer</p>
             <ul>
               <li><strong>Birthday:</strong> 5 Feb 1999</li>
               <li><strong>Email:</strong> X@gmail.com</li>
@@ -238,27 +238,7 @@
 
     
 
-<!-- Modal -->
-<div id="editModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modalDayTitle"></h2>
-    <div id="exerciseInputContainer">
-      <input type="text" id="exerciseName" placeholder="Exercise Name">
-      <input type="text" id="exerciseTime" placeholder="Seconds / rep">
-      <input type="text" id="exerciseSets" placeholder="Number Of Sets">
-      <input type="text" id="exerciseBreak" placeholder="Break Time">
-    </div>
-    <button id="addExerciseBtn">Add Exercise</button>
-    <ul id="exerciseList"></ul>
-    <div class="save-button-container">
-      <button id="saveExercisesBtn">Save</button>
-    </div>
-  </div>
-</div>
-
-
-      <!-- ======= Schedule Section ======= -->
+<!-- Schedule Section -->
 <section id="Schedule" class="Schedule">
   <div class="section-title">
     <h2>Schedule</h2>
@@ -271,7 +251,7 @@
           <h2>Monday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Monday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Monday">Edit</button>
           </div>
         </div>
       </div>
@@ -281,7 +261,7 @@
           <h2>Tuesday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Tuesday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Tuesday">Edit</button>
           </div>
         </div>
       </div>
@@ -291,7 +271,7 @@
           <h2>Wednesday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Wednesday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Wednesday">Edit</button>
           </div>
         </div>
       </div>
@@ -301,7 +281,7 @@
           <h2>Thursday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Thursday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Thursday">Edit</button>
           </div>
         </div>
       </div>
@@ -311,7 +291,7 @@
           <h2>Friday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Friday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Friday">Edit</button>
           </div>
         </div>
       </div>
@@ -321,7 +301,7 @@
           <h2>Saturday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Saturday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Saturday">Edit</button>
           </div>
         </div>
       </div>
@@ -331,13 +311,33 @@
           <h2>Sunday</h2>
           <div class="button-container">
             <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm edit-button" data-day="Sunday">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Sunday">Edit</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Edit Modal -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalDayTitle"></h2>
+    <div id="exerciseInputContainer">
+      <input type="text" id="exerciseName" placeholder="Exercise Name">
+      <input type="text" id="exerciseTime" placeholder="Seconds / rep">
+      <input type="text" id="exerciseSets" placeholder="Number Of Sets">
+      <input type="text" id="exerciseBreak" placeholder="Break Time">
+    </div>
+    <button id="addExerciseBtn" class="btn-primary">Add Exercise</button>
+    <ul id="exerciseList" class="exercise-list"></ul>
+    <div class="button-container">
+      <button id="saveExercisesBtn" class="btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
 
 
     <!-- ======= Contact Section ======= -->
