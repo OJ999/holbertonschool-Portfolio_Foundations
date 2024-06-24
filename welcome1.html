@@ -47,7 +47,6 @@
       <ul>
         <li><a href="#services" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#profile" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Profile</span></a></li>
-        <li><a href="#Schedule" class="nav-link scrollto"><i class="bi bi-card-list"></i> <span>Schedule</span></a></li>
         <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
       </ul>
     </nav>
@@ -56,129 +55,248 @@
   <!-- =================================================================== -->
 
   <!-- ======= Main Buttons Section ======= -->
-  <section id="services" class="services">
-    <div class="services">
-      <div class="logo">My PT</div>
-    </div>
-    <div class="Buttons" data-aos="fade-up">
-      <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="icon-box iconbox-blue">
-            <div class="icon">
-              <a href="#" id="friends-link">
-                <i class="bi bi-person-add"></i>
-                <h4>Friends</h4>
-              </a>
-            </div>
+
+<section id="services" class="services">
+  <div class="services">
+    <div class="logo">My PT</div>
+  </div>
+  <div class="Buttons" data-aos="fade-up">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box iconbox-blue">
+          <div class="icon">
+            <a href="#" id="friends-link">
+              <i class="bi bi-person-add"></i>
+              <h4>Friends</h4>
+            </a>
           </div>
         </div>
-  
-        <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="icon-box iconbox-blue">
-            <div class="icon">
-              <a href="#Schedule">
-                <i class="bi bi-speedometer"></i>
-                <h4>Start</h4>
-              </a>
-            </div>
+      </div>
+      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box iconbox-blue">
+          <div class="icon">
+            <a href="#schedule-modal" id="start-link">
+              <i class="bi bi-speedometer"></i>
+              <h4>Start</h4>
+            </a>
           </div>
         </div>
-  
-        <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="icon-box iconbox-blue">
-            <div class="icon">
-              <a href="#" id="messages-link">
-                <i class="bi bi-chat-left-dots"></i>
-                <h4>Messages</h4>
-              </a>
-            </div>
+      </div>
+      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box iconbox-blue">
+          <div class="icon">
+          <a href="#" id="messages-link">
+            <i class="bi bi-chat-left-dots"></i>
+            <h4>Messages</h4>
+          </a>
           </div>
         </div>
       </div>
     </div>
-  
-<!-- Friends Modal -->
-<div id="friends-modal" class="modal">
+  </div>
+
+  <!-- Friends Modal -->
+  <div id="friends-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Friends</h2>
+        <button id="add-friend-btn" class="compose-button">
+          <i class="bi bi-person-plus"></i>
+        </button>
+        <span class="close">&times;</span>
+      </div>
+      <div class="search-container friends-search-container">
+        <div class="search-wrapper">
+          <input type="text" id="search-friends" placeholder="Search Friends">
+          <i class="bi bi-search search-icon"></i>
+        </div>
+      </div>
+      <div class="friends-navigation">
+        <button class="nav-button" id="friends-list-btn">Friends</button>
+        <button class="nav-button" id="friend-requests-btn">Friend Requests</button>
+      </div>
+      <div id="friends-list-container">
+        <!-- Friends list will be loaded here dynamically -->
+      </div>
+      <div id="friend-requests-container" style="display: none;">
+        <!-- Friend requests will be loaded here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Messages Modal -->
+  <div id="messages-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Messages</h2>
+        <button id="compose-message-btn" class="compose-button">
+          <i class="bi bi-envelope-plus"></i>
+        </button>
+        <span class="close">&times;</span>
+      </div>
+      <div class="search-container messages-search-container">
+        <div class="search-wrapper">
+          <input type="text" id="search-messages" placeholder="Search Messages">
+          <i class="bi bi-search search-icon"></i>
+        </div>
+      </div>
+      <div class="messages-navigation">
+        <button class="nav-button" id="messages-list-btn">Messages</button>
+        <button class="nav-button" id="message-requests-btn">Message Requests</button>
+      </div>
+      <div id="messages-container">
+        <!-- Messages will be loaded here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Compose Message Modal -->
+  <div id="compose-message-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Compose Message</h2>
+        <span class="close">&times;</span>
+      </div>
+      <form id="mailForm">
+        <div class="form-group">
+          <label for="to">To:</label>
+          <input type="email" id="to" name="to" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="10" required></textarea>
+        </div>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Schedule Modal -->
+<div id="schedule-modal" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <h2>Friends</h2>
-      <button id="add-friend-btn" class="compose-button">
-        <i class="bi bi-person-plus"></i>
-      </button>
-      <span class="close">&times;</span>
+    <span class="close">&times;</span>
+    <div class="section-title">
+      <h2>Schedule</h2>
     </div>
-    <div class="search-container friends-search-container">
-      <div class="search-wrapper">
-        <input type="text" id="search-friends" placeholder="Search Friends">
-        <i class="bi bi-search search-icon"></i>
+    <div class="container">
+      <div class="row">
+        <!-- Monday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Monday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Monday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tuesday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Tuesday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Tuesday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Wednesday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Wednesday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Wednesday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Thursday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Thursday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Thursday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Friday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Friday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Friday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Saturday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Saturday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Saturday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Sunday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Sunday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Sunday">Edit</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="friends-navigation">
-      <button class="nav-button" id="friends-list-btn">Friends</button>
-      <button class="nav-button" id="friend-requests-btn">Friend Requests</button>
-    </div>
-    <div id="friends-list-container">
-      <!-- Friends list will be loaded here dynamically -->
-    </div>
-    <div id="friend-requests-container" style="display: none;">
-      <!-- Friend requests will be loaded here dynamically -->
     </div>
   </div>
 </div>
 
-
-<!-- Messages Modal -->
-<div id="messages-modal" class="modal">
+<!-- Edit Schedule Modal -->
+<div id="editModal" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <h2>Messages</h2>
-      <button id="compose-message-btn" class="compose-button">
-        <i class="bi bi-envelope-plus"></i>
-      </button>
-      <span class="close">&times;</span>
-    </div>
-    <div class="search-container messages-search-container">
-      <div class="search-wrapper">
-        <input type="text" id="search-messages" placeholder="Search Messages">
-        <i class="bi bi-search search-icon"></i>
+    <span class="close">&times;</span>
+    <h2 id="modalDayTitle"></h2>
+    <button id="toggleInputContainerBtn" class="btn-primary">Show/Hide Inputs</button>
+    <div id="editModalContainer">
+      <div id="exerciseInputContainer">
+        <div class="form-group">
+          <label for="exerciseName">Exercise Name</label>
+          <input type="text" id="exerciseName" placeholder="Exercise Name">
+        </div>
+        <div class="form-group">
+          <label for="exerciseReps">Number Of Reps</label>
+          <input type="text" id="exerciseReps" placeholder="Number Of Reps">
+        </div>
+        <div class="form-group">
+          <label for="exerciseTimePerRep">Seconds per Rep</label>
+          <input type="text" id="exerciseTimePerRep" placeholder="Seconds per Rep">
+        </div>
+        <div class="form-group">
+          <label for="exerciseSets">Number Of Sets</label>
+          <input type="text" id="exerciseSets" placeholder="Number Of Sets">
+        </div>
+        <div class="form-group">
+          <label for="exerciseBreak">Break Time</label>
+          <input type="text" id="exerciseBreak" placeholder="Break Time">
+        </div>
+        <button id="addExerciseBtn" class="btn-primary">Add Exercise</button>
       </div>
+      <ul id="exerciseList" class="exercise-list"></ul>
     </div>
-    <div class="messages-navigation">
-      <button class="nav-button" id="messages-list-btn">Messages</button>
-      <button class="nav-button" id="message-requests-btn">Message Requests</button>
-    </div>
-    <div id="messages-container">
-      <!-- Messages will be loaded here dynamically -->
+    <div class="button-container">
+      <button id="saveExercisesBtn" class="btn-primary">Save</button>
     </div>
   </div>
 </div>
-
-<!-- Compose Message Modal -->
-<div id="compose-message-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Compose Message</h2>
-      <span class="close">&times;</span>
-    </div>
-    <form id="mailForm">
-      <div class="form-group">
-        <label for="to">To:</label>
-        <input type="email" id="to" name="to" required>
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="10" required></textarea>
-      </div>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</div>
-  </section>
-  
   <!-- =================================================================== -->
 
    <!-- ======= Profile Section ======= -->
@@ -243,127 +361,6 @@
   <!-- =================================================================== -->
 
 
-<!-- ======= Schedule Section ======= -->
-
-<section id="Schedule" class="Schedule">
-  <div class="section-title">
-    <h2>Schedule</h2>
-  </div>
-  <div class="container">
-    <div class="row">
-      <!-- Monday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Monday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Monday">Edit</button>
-          </div>
-        </div>
-      </div>
-      <!-- Tuesday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Tuesday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Tuesday">Edit</button>
-          </div>
-        </div>
-      </div>
-      <!-- Wednesday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Wednesday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Wednesday">Edit</button>
-          </div>
-        </div>
-      </div>
-      <!-- Thursday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Thursday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Thursday">Edit</button>
-          </div>
-        </div>
-      </div>
-      <!-- Friday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Friday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Friday">Edit</button>
-          </div>
-        </div>
-      </div>
-      <!-- Saturday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Saturday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Saturday">Edit</button>
-          </div>
-        </div>
-      </div>
-      <!-- Sunday -->
-      <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <h2>Sunday</h2>
-          <div class="button-container">
-            <button type="button" class="btn btn-outline-success btn-sm">Start</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Sunday">Edit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Edit Schedule Modal -->
-<div id="editModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modalDayTitle"></h2>
-    <button id="toggleInputContainerBtn" class="btn-primary">Show/Hide Inputs</button>
-    <div id="editModalContainer">
-      <div id="exerciseInputContainer">
-        <div class="form-group">
-          <label for="exerciseName">Exercise Name</label>
-          <input type="text" id="exerciseName" placeholder="Exercise Name">
-        </div>
-        <div class="form-group">
-          <label for="exerciseReps">Number Of Reps</label>
-          <input type="text" id="exerciseReps" placeholder="Number Of Reps">
-        </div>
-        <div class="form-group">
-          <label for="exerciseTimePerRep">Seconds per Rep</label>
-          <input type="text" id="exerciseTimePerRep" placeholder="Seconds per Rep">
-        </div>
-        <div class="form-group">
-          <label for="exerciseSets">Number Of Sets</label>
-          <input type="text" id="exerciseSets" placeholder="Number Of Sets">
-        </div>
-        <div class="form-group">
-          <label for="exerciseBreak">Break Time</label>
-          <input type="text" id="exerciseBreak" placeholder="Break Time">
-        </div>
-        <button id="addExerciseBtn" class="btn-primary">Add Exercise</button>
-      </div>
-      <ul id="exerciseList" class="exercise-list"></ul>
-    </div>
-    <div class="button-container">
-      <button id="saveExercisesBtn" class="btn-primary">Save</button>
-    </div>
-  </div>
-</div>
-
-  <!-- =================================================================== -->
 
 
     <!-- ======= Contact Section ======= -->

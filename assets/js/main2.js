@@ -177,6 +177,7 @@
     setupModal('friends-modal', 'friends-link', '.close');
     setupModal('messages-modal', 'messages-link', '.close');
     setupModal('compose-message-modal', 'compose-message-btn', '.close');
+    setupModal('schedule-modal', 'start-link', '.close');
     
     // Friends modal functionality
     const addFriendBtn = document.getElementById('add-friend-btn');
