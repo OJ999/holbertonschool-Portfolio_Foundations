@@ -38,6 +38,7 @@
 <body>
 
   <!-- ======= Header ======= -->
+
   <header id="header" class="d-flex flex-column justify-content-center">
     <!-- Mobile nav toggle button -->
     <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
@@ -46,16 +47,15 @@
       <ul>
         <li><a href="#services" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#profile" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Profile</span></a></li>
-        <li><a href="#Schedule" class="nav-link scrollto"><i class="bi bi-list-task"></i> <span>Schedule</span></a></li>
-        <li><a href="#Services" class="nav-link scrollto"><i class="bi bi-headset"></i> <span>Services</span></a></li>
+        <li><a href="#Schedule" class="nav-link scrollto"><i class="bi bi-card-list"></i> <span>Schedule</span></a></li>
         <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
       </ul>
-    </nav><!-- .nav-menu -->
+    </nav>
+  </header>
 
-  </header><!-- End Header -->
+  <!-- =================================================================== -->
 
-
-  <!-- ======= Hero Section ======= -->
+  <!-- ======= Main Buttons Section ======= -->
   <section id="services" class="services">
     <div class="services">
       <div class="logo">My PT</div>
@@ -97,7 +97,6 @@
       </div>
     </div>
   
-     <!-- Friends Modal -->
 <!-- Friends Modal -->
 <div id="friends-modal" class="modal">
   <div class="modal-content">
@@ -109,8 +108,10 @@
       <span class="close">&times;</span>
     </div>
     <div class="search-container friends-search-container">
-      <input type="text" id="search-friends" placeholder="Search Friends">
-      <i class="bi bi-search search-icon"></i>
+      <div class="search-wrapper">
+        <input type="text" id="search-friends" placeholder="Search Friends">
+        <i class="bi bi-search search-icon"></i>
+      </div>
     </div>
     <div class="friends-navigation">
       <button class="nav-button" id="friends-list-btn">Friends</button>
@@ -125,6 +126,7 @@
   </div>
 </div>
 
+
 <!-- Messages Modal -->
 <div id="messages-modal" class="modal">
   <div class="modal-content">
@@ -136,8 +138,10 @@
       <span class="close">&times;</span>
     </div>
     <div class="search-container messages-search-container">
-      <input type="text" id="search-messages" placeholder="Search Messages">
-      <i class="bi bi-search search-icon"></i>
+      <div class="search-wrapper">
+        <input type="text" id="search-messages" placeholder="Search Messages">
+        <i class="bi bi-search search-icon"></i>
+      </div>
     </div>
     <div class="messages-navigation">
       <button class="nav-button" id="messages-list-btn">Messages</button>
@@ -148,6 +152,7 @@
     </div>
   </div>
 </div>
+
 <!-- Compose Message Modal -->
 <div id="compose-message-modal" class="modal">
   <div class="modal-content">
@@ -173,12 +178,12 @@
   </div>
 </div>
   </section>
+  
+  <!-- =================================================================== -->
 
-
-  <!-- End Services Section -->
-  <!-- End Hero -->
-  <main id="main">
-    <!-- ======= Profile Section ======= -->
+   <!-- ======= Profile Section ======= -->
+  
+   <main id="main">  
     <section id="profile" class="profile">
       <div class="section-title">
         <h2>Profile</h2>
@@ -206,10 +211,10 @@
     </section>
     
    <!-- Edit Profile Popup -->
-<div id="edit-profile-popup" class="popup">
+    <div id="edit-profile-popup" class="popup">
   <div class="popup-content">
-    <span class="close">&times;</span>
-    <h2>Edit Profile</h2>
+            <span class="close">&times;</span>
+                <h2>Edit Profile</h2>
     <form id="edit-profile-form" action="#" method="post">
       <div class="form-group">
         <label for="birthday">Birthday:</label>
@@ -235,10 +240,11 @@
     </form>
   </div>
 </div>
+  <!-- =================================================================== -->
 
-    
 
-<!-- Schedule Section -->
+<!-- ======= Schedule Section ======= -->
+
 <section id="Schedule" class="Schedule">
   <div class="section-title">
     <h2>Schedule</h2>
@@ -319,37 +325,55 @@
   </div>
 </section>
 
-<!-- Edit Modal -->
+<!-- Edit Schedule Modal -->
 <div id="editModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2 id="modalDayTitle"></h2>
-    <div id="exerciseInputContainer">
-      <input type="text" id="exerciseName" placeholder="Exercise Name">
-      <input type="text" id="exerciseTime" placeholder="Seconds / rep">
-      <input type="text" id="exerciseSets" placeholder="Number Of Sets">
-      <input type="text" id="exerciseBreak" placeholder="Break Time">
+    <button id="toggleInputContainerBtn" class="btn-primary">Show/Hide Inputs</button>
+    <div id="editModalContainer">
+      <div id="exerciseInputContainer">
+        <div class="form-group">
+          <label for="exerciseName">Exercise Name</label>
+          <input type="text" id="exerciseName" placeholder="Exercise Name">
+        </div>
+        <div class="form-group">
+          <label for="exerciseReps">Number Of Reps</label>
+          <input type="text" id="exerciseReps" placeholder="Number Of Reps">
+        </div>
+        <div class="form-group">
+          <label for="exerciseTimePerRep">Seconds per Rep</label>
+          <input type="text" id="exerciseTimePerRep" placeholder="Seconds per Rep">
+        </div>
+        <div class="form-group">
+          <label for="exerciseSets">Number Of Sets</label>
+          <input type="text" id="exerciseSets" placeholder="Number Of Sets">
+        </div>
+        <div class="form-group">
+          <label for="exerciseBreak">Break Time</label>
+          <input type="text" id="exerciseBreak" placeholder="Break Time">
+        </div>
+        <button id="addExerciseBtn" class="btn-primary">Add Exercise</button>
+      </div>
+      <ul id="exerciseList" class="exercise-list"></ul>
     </div>
-    <button id="addExerciseBtn" class="btn-primary">Add Exercise</button>
-    <ul id="exerciseList" class="exercise-list"></ul>
     <div class="button-container">
       <button id="saveExercisesBtn" class="btn-primary">Save</button>
     </div>
   </div>
 </div>
 
+  <!-- =================================================================== -->
 
 
     <!-- ======= Contact Section ======= -->
+
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
-
         <div class="section-title">
           <h2>Contact</h2>
         </div>
-
         <div class="row mt-1">
-
           <div class="col-lg-4">
             <div class="info">
               <div class="address">
@@ -369,13 +393,9 @@
                 <h4>Call:</h4>
                 <p>+123 456 789</p>
               </div>
-
             </div>
-
           </div>
-
           <div class="col-lg-8 mt-5 mt-lg-0">
-
             <form action="your_form_handler.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -398,17 +418,15 @@
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
-
           </div>
-
         </div>
-
       </div>
     </section>
-    <!-- End Contact Section -->
-  </main><!-- End #main -->
+  </main>
+  <!-- =================================================================== -->
 
  <!-- ======= Footer ======= -->
+
  <footer id="footer">
   <div class="container">
     <h3>My PT</h3>
@@ -430,7 +448,9 @@
       Designed by OmarJaber</a>
     </div>
   </div>
-</footer><!-- End Footer -->
+</footer>
+
+<!-- =================================================================== -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
