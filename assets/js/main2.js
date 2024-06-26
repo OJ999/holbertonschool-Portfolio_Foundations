@@ -141,8 +141,19 @@
     var editProfilePopup = document.getElementById("edit-profile-popup");
     var editProfileBtn = document.querySelector(".edit-profile-button");
     var closeEditProfile = editProfilePopup.querySelector(".close");
+
+    // Function to set placeholders based on current profile details
+    const setEditProfilePlaceholders = () => {
+      document.getElementById("name").placeholder = document.querySelector(".profile-details h2").textContent.trim();
+      document.getElementById("bio").placeholder = document.querySelector(".profile-details p.fst-italic").textContent.trim();
+      document.getElementById("birthday").placeholder = document.querySelector(".profile-details ul li:nth-child(1) strong").nextSibling.textContent.trim();
+      document.getElementById("email").placeholder = document.querySelector(".profile-details ul li:nth-child(2) strong").nextSibling.textContent.trim();
+      document.getElementById("phone").placeholder = document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling.textContent.trim();
+      document.getElementById("city").placeholder = document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling.textContent.trim();
+    };
   
     editProfileBtn.addEventListener("click", function() {
+        setEditProfilePlaceholders();
         editProfilePopup.style.display = "block";
     });
   
@@ -154,6 +165,53 @@
         if (event.target == editProfilePopup) {
             editProfilePopup.style.display = "none";
         }
+    });
+  
+    // Handle the form submission
+    var editProfileForm = document.getElementById("edit-profile-form");
+    editProfileForm.addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+  
+      // Get form values
+      var name = document.getElementById("name").value;
+      var bio = document.getElementById("bio").value;
+      var birthday = document.getElementById("birthday").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var city = document.getElementById("city").value;
+      var profilePicture = document.getElementById("profile_picture").files[0];
+
+      // Update profile details only if they have changed
+      if (name && document.querySelector(".profile-details h2").textContent.trim() !== name) {
+        document.querySelector(".profile-details h2").textContent = name;
+      }
+      if (bio && document.querySelector(".profile-details p.fst-italic").textContent.trim() !== bio) {
+        document.querySelector(".profile-details p.fst-italic").textContent = bio;
+      }
+      if (birthday && document.querySelector(".profile-details ul li:nth-child(1) strong").nextSibling.textContent.trim() !== birthday) {
+        document.querySelector(".profile-details ul li:nth-child(1) strong").nextSibling.textContent = ` ${birthday}`;
+      }
+      if (email && document.querySelector(".profile-details ul li:nth-child(2) strong").nextSibling.textContent.trim() !== email) {
+        document.querySelector(".profile-details ul li:nth-child(2) strong").nextSibling.textContent = ` ${email}`;
+      }
+      if (phone && document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling.textContent.trim() !== phone) {
+        document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling.textContent = ` ${phone}`;
+      }
+      if (city && document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling.textContent.trim() !== city) {
+        document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling.textContent = ` ${city}`;
+      }
+  
+      // Update profile picture if a new one is uploaded
+      if (profilePicture) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          document.querySelector(".profile-picture img").src = e.target.result;
+        };
+        reader.readAsDataURL(profilePicture);
+      }
+  
+      // Hide the popup
+      editProfilePopup.style.display = "none";
     });
   });
 
