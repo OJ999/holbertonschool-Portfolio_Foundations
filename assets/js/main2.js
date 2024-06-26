@@ -158,7 +158,7 @@
   });
 
   /**
-   * Friends, Messages, and Schedule Modals
+   * Friends, Profile, and Schedule Modals
    */
   document.addEventListener('DOMContentLoaded', (event) => {
     // Open and close modals
@@ -177,8 +177,7 @@
     }
   
     setupModal('friends-modal', 'friends-link', '.close');
-    setupModal('messages-modal', 'messages-link', '.close');
-    setupModal('compose-message-modal', 'compose-message-btn', '.close');
+    setupModal('profile-modal', 'profile-link', '.close');
     setupModal('schedule-modal', 'start-link', '.close');
     setupModal('conversation-modal', null, '.close'); // Conversation modal
   
@@ -247,22 +246,6 @@
         }
       });
     });
-  
-    // Messages modal functionality
-    const searchMessagesInput = document.getElementById('search-messages');
-    const messagesContainer = document.getElementById('messages-container');
-  
-    searchMessagesInput.oninput = () => {
-      const query = searchMessagesInput.value.toLowerCase();
-      const messages = messagesContainer.querySelectorAll('.message-item');
-      messages.forEach(message => {
-        if (message.textContent.toLowerCase().includes(query)) {
-          message.style.display = '';
-        } else {
-          message.style.display = 'none';
-        }
-      });
-    };
   
     // Conversation modal functionality
     const conversationModal = document.getElementById('conversation-modal');

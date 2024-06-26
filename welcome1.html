@@ -35,28 +35,11 @@
   ======================================================== -->
 </head>
 
-<body>
-
-  <!-- ======= Header ======= -->
-
-  <header id="header" class="d-flex flex-column justify-content-center">
-    <!-- Mobile nav toggle button -->
-    <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
-
-    <nav id="navbar" class="navbar nav-menu">
-      <ul>
-        <li><a href="#services" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-        <li><a href="#profile" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Profile</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- =================================================================== -->
+<body>  
 
   <!-- ======= Main Buttons Section ======= -->
 
-<section id="services" class="services">
+  <section id="services" class="services">
   <div class="services">
     <div class="logo">My PT</div>
   </div>
@@ -85,17 +68,15 @@
       <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box iconbox-blue">
           <div class="icon">
-          <a href="#" id="messages-link">
-            <i class="bi bi-chat-left-dots"></i>
-            <h4>Messages</h4>
-          </a>
+            <a href="#" id="profile-link">
+              <i class="bi bi-person-circle"></i>
+              <h4>Profile</h4>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
   
 <!-- Friends Modal -->
 <div id="friends-modal" class="modal">
@@ -132,10 +113,6 @@
   </div>
 </div>
 
-
-
-
-
 <!-- Conversation Modal -->
 <div id="conversation-modal" class="modal">
   <div class="modal-content">
@@ -154,7 +131,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- Add Friend Modal -->
 <div id="add-friend-modal" class="modal">
@@ -175,57 +151,67 @@
   </div>
 </div>
 
-  <!-- Messages Modal -->
-  <div id="messages-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Messages</h2>
-        <button id="compose-message-btn" class="compose-button">
-          <i class="bi bi-envelope-plus"></i>
-        </button>
-        <span class="close">&times;</span>
-      </div>
-      <div class="search-container messages-search-container">
-        <div class="search-wrapper">
-          <input type="text" id="search-messages" placeholder="Search Messages">
-          <i class="bi bi-search search-icon"></i>
-        </div>
-      </div>
-      <div class="messages-navigation">
-        <button class="nav-button" id="messages-list-btn">Messages</button>
-        <button class="nav-button" id="message-requests-btn">Message Requests</button>
-      </div>
-      <div id="messages-container">
-        <!-- Messages will be loaded here dynamically -->
-      </div>
-    </div>
-  </div>
+  <!-- Profile Modal -->
 
-  <!-- Compose Message Modal -->
-  <div id="compose-message-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Compose Message</h2>
-        <span class="close">&times;</span>
+  <div id="profile-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="section-title">
+        <h2>Profile</h2>
       </div>
-      <form id="mailForm">
-        <div class="form-group">
-          <label for="to">To:</label>
-          <input type="email" id="to" name="to" required>
-        </div>
-        <div class="form-group">
-          <label for="subject">Subject:</label>
-          <input type="text" id="subject" name="subject" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="10" required></textarea>
-        </div>
-        <button type="submit">Send</button>
-      </form>
+      <span class="close">&times;</span>
+    </div>
+    <div class="Profile">
+      <div class="profile-body">
+      <div class="profile-picture">
+        <img src="path_to_profile_picture.jpg" alt="Profile Picture">
+      </div>
+      <h2>X</h2>
+      <p class="fst-italic">Software Engineer</p>
+      <ul>
+        <li><strong>Birthday:</strong> 5 Feb 1999</li>
+        <li><strong>Email:</strong> X@gmail.com</li>
+        <li><strong>Phone:</strong> +961 71 265 832</li>
+        <li><strong>City:</strong> Beirut, Lebanon</li>
+      </ul>
+      <button class="edit-profile-button">Edit Profile</button>
     </div>
   </div>
-</section>
+  </div>
+</div>
+
+ <!-- Edit Profile Popup -->
+ <div id="edit-profile-popup" class="popup">
+  <div class="popup-content">
+            <span class="close">&times;</span>
+                <h2>Edit Profile</h2>
+    <form id="edit-profile-form" action="#" method="post">
+      <div class="form-group">
+        <label for="birthday">Birthday:</label>
+        <input type="text" id="birthday" name="birthday" placeholder="5 Feb 1999">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Omarj819@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+961 71 265 832">
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" placeholder="Beirut, Lebanon">
+      </div>
+      <div class="form-group">
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" name="profile_picture" id="profile_picture">
+      </div>
+      <button type="submit" class="save-changes-button">Save Changes</button>
+    </form>
+  </div>
+</div>
+
+  <!-- =================================================================== -->
 
 <!-- Schedule Modal -->
 <div id="schedule-modal" class="modal">
@@ -236,7 +222,6 @@
       <h2>Schedule</h2>
     </div>
     </div>
-    
     <div class="container">
       <div class="row">
         <!-- Monday -->
@@ -351,155 +336,6 @@
     </div>
   </div>
 </div>
-  <!-- =================================================================== -->
-
-   <!-- ======= Profile Section ======= -->
-  
-   <main id="main">  
-    <section id="profile" class="profile">
-      <div class="section-title">
-        <h2>Profile</h2>
-      </div>
-      <div class="Profile">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="profile-picture">
-              <img src="path_to_profile_picture.jpg" alt="Profile Picture">
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <h2>X</h2>
-            <p class="fst-italic">Software Engineer</p>
-            <ul>
-              <li><strong>Birthday:</strong> 5 Feb 1999</li>
-              <li><strong>Email:</strong> X@gmail.com</li>
-              <li><strong>Phone:</strong> +961 71 265 832</li>
-              <li><strong>City:</strong> Beirut, Lebanon</li>
-            </ul>
-            <button class="edit-profile-button">Edit Profile</button>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-   <!-- Edit Profile Popup -->
-    <div id="edit-profile-popup" class="popup">
-  <div class="popup-content">
-            <span class="close">&times;</span>
-                <h2>Edit Profile</h2>
-    <form id="edit-profile-form" action="#" method="post">
-      <div class="form-group">
-        <label for="birthday">Birthday:</label>
-        <input type="text" id="birthday" name="birthday" placeholder="5 Feb 1999">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Omarj819@gmail.com">
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" placeholder="+961 71 265 832">
-      </div>
-      <div class="form-group">
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" placeholder="Beirut, Lebanon">
-      </div>
-      <div class="form-group">
-        <label for="profile_picture">Profile Picture:</label>
-        <input type="file" name="profile_picture" id="profile_picture">
-      </div>
-      <button type="submit" class="save-changes-button">Save Changes</button>
-    </form>
-  </div>
-</div>
-  <!-- =================================================================== -->
-
-
-
-
-    <!-- ======= Contact Section ======= -->
-
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
-        <div class="row mt-1">
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Beirut, Lebanon</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>info@example.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+123 456 789</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8 mt-5 mt-lg-0">
-            <form action="your_form_handler.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <!-- =================================================================== -->
-
- <!-- ======= Footer ======= -->
-
- <footer id="footer">
-  <div class="container">
-    <h3>My PT</h3>
-    <p>Unlock your true potential and redefine your fitness journey with My PT.</p>
-    <div class="social-links">
-      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-    </div>
-    <div class="copyright">
-      &copy; Copyright <strong><span>MyPT</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: [license-url] -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/ -->
-      Designed by OmarJaber</a>
-    </div>
-  </div>
-</footer>
 
 <!-- =================================================================== -->
 
