@@ -235,6 +235,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 5% auto;
   border: 1px solid #888;
   width: 80%;
+  height: 70%;
   border-radius: 8px;
 }
 
@@ -944,6 +945,29 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Profile Section
 --------------------------------------------------------------*/
+
+.profile-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 5%;
+}
+
+.profile-picture {
+  flex: 0 0 150px;
+}
+
+.profile-picture img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profile-details h2 {
+  margin-top: 0;
+}
 
 .Profile {
   display: flex;
