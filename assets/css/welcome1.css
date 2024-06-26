@@ -312,14 +312,16 @@ h1, h2, h3, h4, h5, h6 {
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto;
-  padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  border-radius: 8px;
 }
 
 .modal-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding-right: 3%;
+  padding-left: 3%;
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
@@ -338,7 +340,75 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-/* Additional modal styles */
+/* Friends Modal Enhancements */
+.friend-item, .friend-request-item, .user-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.friend-name, .user-name {
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.message-btn, .accept-btn, .decline-btn, .add-friend-btn {
+  background-color: white;
+  color: #0563bb;
+  border: 1px solid #0563bb;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.message-btn:hover {
+  background-color: #0678e3;
+  color: white;
+  border-color: #0678e3;
+}
+
+.accept-btn {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.accept-btn:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.decline-btn {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.decline-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.add-friend-btn {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.add-friend-btn:hover {
+  background-color: #28a745;
+  color: white;
+}
+
 .search-container {
   position: relative;
   width: 100%;
@@ -346,7 +416,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #search-messages,
-#search-friends {
+#search-friends,
+#search-users {
   width: calc(100% - 40px);
   padding: 10px;
   padding-left: 40px; /* Add space for the icon */
@@ -398,19 +469,120 @@ h1, h2, h3, h4, h5, h6 {
 .search-wrapper {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
-.search-wrapper input[type="text"] {
+.input-group {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .add-friend-button {
+  border-left: none;
+  background-color: white;
+  color: #0563bb;
+  border: 1px solid #ced4da;
+  border-radius: 0 4px 4px 0;
+}
+
+.input-group .add-friend-button:hover {
+  background-color: #0678e3;
+  color: white;
+  border-color: #0678e3;
+}
+
+.search-friends-button {
+  background-color: #0563bb;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.search-friends-button:hover {
+  background-color: #0678e3;
+}
+
+/* Conversation Modal Styles */
+#conversation-modal .modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 60%;
+  margin: auto;
+}
+
+#conversation-modal .modal-header,
+#conversation-modal .conversation-footer {
+  padding: 10px;
+  background-color: #f1f1f1b0;
+}
+
+#conversation-modal .modal-header h2 {
+  margin: 0;
+}
+
+#conversation-modal .modal-header .close {
+  cursor: pointer;
+}
+
+#conversation-modal .conversation-body {
   flex: 1;
-  padding-right: 30px; /* Add padding to the right to make space for the icon */
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #fff;
 }
 
-.search-wrapper .search-icon {
-  position: absolute;
-  right: 10px;
-  font-size: 16px;
-  color: #555;
+#conversation-modal .conversation-messages {
+  display: flex;
+  flex-direction: column;
+}
+
+#conversation-modal .message {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#conversation-modal .message.sent {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+}
+
+#conversation-modal .message.received {
+  align-self: flex-start;
+  background-color: #ececec;
+}
+
+#conversation-modal .conversation-footer {
+  display: flex;
+  align-items: center;
+}
+
+#conversation-modal #message-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+#conversation-modal #send-message-btn {
+  padding: 10px 20px;
+  background-color: #0563bb;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#conversation-modal #send-message-btn:hover {
+  background-color: #0678e3;
 }
 
 /* Compose Message Modal */
@@ -760,7 +932,6 @@ section {
 
 .section-title {
   text-align: center;
-  padding-bottom: 30px;
 }
 
 .section-title h2 {
@@ -817,7 +988,6 @@ section {
 .modal-content {
   background-color: #fefefe;
   margin: 10% auto; 
-  padding: 20px;
   border: 1px solid #888;
   width: 80%; 
   z-index: 1001; 

@@ -1,9 +1,9 @@
-/** =======================================================
-* Template Name: MyPT
-* Updated: April 2024
-* Author: OmarJaber
-* Project
-======================================================== **/
+/**
+ * Template Name: MyPT
+ * Updated: April 2024
+ * Author: OmarJaber
+ * Project
+ */
 
 (function() {
   "use strict";
@@ -166,19 +166,22 @@
       const modal = document.getElementById(modalId);
       const trigger = document.getElementById(triggerId);
       const closeBtn = modal.querySelector(closeClass);
-
-      trigger.onclick = () => modal.style.display = "block";
+  
+      if (trigger) {
+        trigger.onclick = () => modal.style.display = "block";
+      }
       closeBtn.onclick = () => modal.style.display = "none";
       window.onclick = (event) => {
         if (event.target == modal) modal.style.display = "none";
       };
     }
-
+  
     setupModal('friends-modal', 'friends-link', '.close');
     setupModal('messages-modal', 'messages-link', '.close');
     setupModal('compose-message-modal', 'compose-message-btn', '.close');
     setupModal('schedule-modal', 'start-link', '.close');
-    
+    setupModal('conversation-modal', null, '.close'); // Conversation modal
+  
     // Friends modal functionality
     const addFriendBtn = document.getElementById('add-friend-btn');
     const friendsListContainer = document.getElementById('friends-list-container');
@@ -186,37 +189,42 @@
     const friendsListBtn = document.getElementById('friends-list-btn');
     const friendRequestsBtn = document.getElementById('friend-requests-btn');
     const friendRequestsContainer = document.getElementById('friend-requests-container');
-
+  
     addFriendBtn.onclick = () => {
       const friendName = prompt("Enter the name of the new friend:");
       if (friendName) {
         const friendElement = document.createElement('div');
-        friendElement.textContent = friendName;
+        friendElement.classList.add('friend-item');
+        friendElement.innerHTML = `
+          <img src="path_to_profile_picture.jpg" alt="Profile Picture" class="profile-pic">
+          <span class="friend-name">${friendName}</span>
+          <button class="message-btn">Message</button>
+        `;
         friendsListContainer.appendChild(friendElement);
-        friendsListContainer.scrollTop = friendsListContainer.scrollHeight;
+        setupMessageButton(friendElement.querySelector('.message-btn'));
       }
     };
-
+  
     friendsListBtn.onclick = () => showFriendsList();
     friendRequestsBtn.onclick = () => showFriendRequests();
-
+  
     function showFriendsList() {
       friendsListContainer.style.display = 'block';
       friendRequestsContainer.style.display = 'none';
       friendsListBtn.classList.add('active');
       friendRequestsBtn.classList.remove('active');
     }
-
+  
     function showFriendRequests() {
       friendsListContainer.style.display = 'none';
       friendRequestsContainer.style.display = 'block';
       friendsListBtn.classList.remove('active');
       friendRequestsBtn.classList.add('active');
     }
-
+  
     searchFriendsInput.oninput = () => {
       const query = searchFriendsInput.value.toLowerCase();
-      const friends = friendsListContainer.querySelectorAll('div');
+      const friends = friendsListContainer.querySelectorAll('.friend-item');
       friends.forEach(friend => {
         if (friend.textContent.toLowerCase().includes(query)) {
           friend.style.display = '';
@@ -226,13 +234,27 @@
       });
     };
 
+    // Search functionality for Friends
+    const searchFriendsBtn = document.getElementById('search-friends-btn');
+    searchFriendsBtn.addEventListener('click', () => {
+      const query = searchFriendsInput.value.toLowerCase();
+      const friends = friendsListContainer.querySelectorAll('.friend-item');
+      friends.forEach(friend => {
+        if (friend.textContent.toLowerCase().includes(query)) {
+          friend.style.display = '';
+        } else {
+          friend.style.display = 'none';
+        }
+      });
+    });
+  
     // Messages modal functionality
     const searchMessagesInput = document.getElementById('search-messages');
     const messagesContainer = document.getElementById('messages-container');
-
+  
     searchMessagesInput.oninput = () => {
       const query = searchMessagesInput.value.toLowerCase();
-      const messages = messagesContainer.querySelectorAll('div');
+      const messages = messagesContainer.querySelectorAll('.message-item');
       messages.forEach(message => {
         if (message.textContent.toLowerCase().includes(query)) {
           message.style.display = '';
@@ -241,7 +263,71 @@
         }
       });
     };
-
+  
+    // Conversation modal functionality
+    const conversationModal = document.getElementById('conversation-modal');
+    const closeConversationModal = conversationModal.querySelector('.close');
+    const sendMessageBtn = document.getElementById('send-message-btn');
+    const messageInput = document.getElementById('message-input');
+    const conversationMessages = document.getElementById('conversation-messages');
+    const friendNameElem = document.getElementById('conversation-friend-name');
+    let currentFriendName = '';
+  
+    document.querySelectorAll('.message-btn').forEach(btn => {
+      setupMessageButton(btn);
+    });
+  
+    function setupMessageButton(btn) {
+      btn.addEventListener('click', (e) => {
+        const friendName = e.target.closest('.friend-item').querySelector('.friend-name').innerText;
+        currentFriendName = friendName;
+        friendNameElem.innerText = friendName;
+        openConversationModal(friendName);
+      });
+    }
+  
+    closeConversationModal.onclick = () => {
+      conversationModal.style.display = 'none';
+    };
+  
+    window.onclick = (event) => {
+      if (event.target == conversationModal) {
+        conversationModal.style.display = 'none';
+      }
+    };
+  
+    sendMessageBtn.addEventListener('click', () => {
+      sendMessage();
+    });
+  
+    messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  
+    function openConversationModal(friendName) {
+      conversationModal.style.display = 'block';
+      loadConversation(friendName);
+    }
+  
+    function addMessage(text, type) {
+      const messageElem = document.createElement('div');
+      messageElem.classList.add('message', type);
+      messageElem.innerText = text;
+      conversationMessages.appendChild(messageElem);
+      conversationMessages.scrollTop = conversationMessages.scrollHeight;
+    }
+  
+    function sendMessage() {
+      const messageText = messageInput.value.trim();
+      if (messageText !== '') {
+        addMessage(messageText, 'sent');
+        messageInput.value = '';
+        // Here, you can add the logic to send the message to the server
+      }
+    }
+  
     // Schedule modal functionality
     const editModal = document.getElementById("editModal");
     const toggleInputContainerBtn = document.getElementById('toggleInputContainerBtn');
@@ -256,15 +342,15 @@
     const saveExercisesBtn = document.getElementById('saveExercisesBtn');
     const modalDayTitle = document.getElementById('modalDayTitle');
     const closeEditModal = document.querySelector("#editModal .close");
-
+  
     let exercises = {};
     let currentEditIndex = null;
-
+  
     closeEditModal.onclick = () => editModal.style.display = "none";
     window.onclick = (event) => {
       if (event.target == editModal) editModal.style.display = "none";
     };
-
+  
     document.querySelectorAll('.btn-outline-secondary').forEach(button => {
       button.addEventListener('click', function() {
         const day = button.getAttribute('data-day');
@@ -273,7 +359,7 @@
         editModal.style.display = "block";
       });
     });
-
+  
     addExerciseBtn.onclick = () => {
       const name = exerciseName.value.trim();
       const reps = exerciseReps.value.trim();
@@ -296,7 +382,7 @@
         clearInputs();
       }
     };
-
+  
     function updateExerciseList() {
       exerciseList.innerHTML = '';
       const day = modalDayTitle.textContent;
@@ -304,7 +390,7 @@
         exercises[day].forEach((exercise, index) => addExerciseToList(exercise, index));
       }
     }
-
+  
     function addExerciseToList(exercise, index) {
       const li = document.createElement("li");
       li.innerHTML = `
@@ -334,12 +420,12 @@
       };
       exerciseList.appendChild(li);
     }
-
+  
     saveExercisesBtn.onclick = () => {
       alert('Exercises saved successfully!');
       editModal.style.display = 'none';
     };
-
+  
     function clearInputs() {
       exerciseName.value = '';
       exerciseReps.value = '';
@@ -347,7 +433,7 @@
       exerciseSets.value = '';
       exerciseBreak.value = '';
     }
-
+  
     toggleInputContainerBtn.onclick = () => {
       if (exerciseInputContainer.style.display === "none") {
         exerciseInputContainer.style.display = "flex";
@@ -355,8 +441,48 @@
         exerciseInputContainer.style.display = "none";
       }
     };
+  
+    function createFriendRequestElement(name, profilePic) {
+      const friendRequestElement = document.createElement('div');
+      friendRequestElement.classList.add('friend-request-item');
+      friendRequestElement.innerHTML = `
+        <img src="${profilePic}" alt="Profile Picture" class="profile-pic">
+        <span class="friend-name">${name}</span>
+        <button class="accept-btn">Accept</button>
+        <button class="decline-btn">Decline</button>
+      `;
+      friendRequestsContainer.appendChild(friendRequestElement);
+  
+      friendRequestElement.querySelector('.accept-btn').onclick = () => {
+        moveFriendToAcceptedList(friendRequestElement);
+      };
+  
+      friendRequestElement.querySelector('.decline-btn').onclick = () => {
+        friendRequestElement.remove();
+      };
+    }
+  
+    function moveFriendToAcceptedList(friendElement) {
+      const friendName = friendElement.querySelector('.friend-name').textContent;
+      const friendProfilePic = friendElement.querySelector('.profile-pic').src;
+  
+      const newFriendElement = document.createElement('div');
+      newFriendElement.classList.add('friend-item');
+      newFriendElement.innerHTML = `
+        <img src="${friendProfilePic}" alt="Profile Picture" class="profile-pic">
+        <span class="friend-name">${friendName}</span>
+        <button class="message-btn">Message</button>
+      `;
+  
+      friendsListContainer.appendChild(newFriendElement);
+      setupMessageButton(newFriendElement.querySelector('.message-btn'));
+      friendElement.remove();
+    }
+  
+    // Example dynamic friend request handling
+    createFriendRequestElement("My PT", "path_to_profile_picture.jpg");
   });
-
+  
   /**
    * Portfolio isotope and filter
    */
@@ -366,9 +492,9 @@
           let portfolioIsotope = new Isotope(portfolioContainer, {
               itemSelector: '.portfolio-item'
           });
-
+  
           let portfolioFilters = select('#portfolio-flters li', true);
-
+  
           on('click', '#portfolio-flters li', function(e) {
               e.preventDefault();
               portfolioFilters.forEach(function(el) {
@@ -384,14 +510,14 @@
           }, true);
       }
   });
-
+  
   /**
    * Initiate portfolio lightbox 
    */
   const portfolioLightbox = GLightbox({
       selector: '.portfolio-lightbox'
   });
-
+  
   /**
    * Initiate portfolio details lightbox 
    */
@@ -400,7 +526,7 @@
       width: '90%',
       height: '90vh'
   });
-
+  
   /**
    * Portfolio details slider
    */
@@ -417,7 +543,7 @@
           clickable: true
       }
   });
-
+  
   /**
    * Animation on scroll
    */
@@ -429,10 +555,9 @@
           mirror: false
       });
   });
-
+  
   /**
    * Initiate Pure Counter 
    */
   new PureCounter();
-
 })();

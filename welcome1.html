@@ -14,7 +14,7 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -27,7 +27,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/welcome1.css" rel="stylesheet">
 
- <!-- =======================================================
+  <!-- =======================================================
   * Template Name: MyPT
   * Updated: April 2024
   * Author: OmarJaber
@@ -95,34 +95,85 @@
     </div>
   </div>
 
-  <!-- Friends Modal -->
-  <div id="friends-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
+
+  
+<!-- Friends Modal -->
+<div id="friends-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="section-title">
         <h2>Friends</h2>
-        <button id="add-friend-btn" class="compose-button">
-          <i class="bi bi-person-plus"></i>
-        </button>
-        <span class="close">&times;</span>
       </div>
-      <div class="search-container friends-search-container">
-        <div class="search-wrapper">
-          <input type="text" id="search-friends" placeholder="Search Friends">
-          <i class="bi bi-search search-icon"></i>
+      <span class="close">&times;</span>
+    </div>
+    <div class="search-container friends-search-container">
+      <div class="search-wrapper">
+        <div class="input-group">
+          <input type="text" id="search-friends" class="form-control" placeholder="Search Friends">
+          <button id="search-friends-btn" class="btn btn-secondary search-friends-button">
+            <i class="bi bi-search"></i>
+          </button>
+          <button id="add-friend-btn" class="btn btn-primary add-friend-button">
+            <i class="bi bi-person-plus"></i>
+          </button>
         </div>
       </div>
-      <div class="friends-navigation">
-        <button class="nav-button" id="friends-list-btn">Friends</button>
-        <button class="nav-button" id="friend-requests-btn">Friend Requests</button>
-      </div>
-      <div id="friends-list-container">
-        <!-- Friends list will be loaded here dynamically -->
-      </div>
-      <div id="friend-requests-container" style="display: none;">
-        <!-- Friend requests will be loaded here dynamically -->
-      </div>
+    </div>
+    <div class="friends-navigation">
+      <button class="nav-button" id="friends-list-btn">Friends</button>
+      <button class="nav-button" id="friend-requests-btn">Friend Requests</button>
+    </div>
+    <div id="friends-list-container">
+      <!-- Friends List -->
+    </div>
+    <div id="friend-requests-container" style="display: none;">
+      <!-- Friend Requests List -->
     </div>
   </div>
+</div>
+
+
+
+
+
+<!-- Conversation Modal -->
+<div id="conversation-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2><span id="conversation-friend-name"></span></h2>
+      <span class="close">&times;</span>
+    </div>
+    <div class="conversation-body">
+      <div id="conversation-messages" class="conversation-messages">
+        <!-- Messages will be dynamically loaded here -->
+      </div>
+    </div>
+    <div class="conversation-footer">
+      <input type="text" id="message-input" placeholder="Type a message" />
+      <button id="send-message-btn">Send</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Add Friend Modal -->
+<div id="add-friend-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add Friends</h2>
+      <span class="close">&times;</span>
+    </div>
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input type="text" id="search-users" placeholder="Search Users">
+        <i class="bi bi-search search-icon"></i>
+      </div>
+    </div>
+    <div id="users-list-container">
+      <!-- List of users to add as friends -->
+    </div>
+  </div>
+</div>
 
   <!-- Messages Modal -->
   <div id="messages-modal" class="modal">
@@ -179,10 +230,13 @@
 <!-- Schedule Modal -->
 <div id="schedule-modal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <div class="modal-header">
+<span class="close">&times;</span>
     <div class="section-title">
       <h2>Schedule</h2>
     </div>
+    </div>
+    
     <div class="container">
       <div class="row">
         <!-- Monday -->
