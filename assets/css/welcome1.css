@@ -430,6 +430,73 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #0678e3;
 }
 
+.input-group {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .search-friends-button {
+  background-color: #0563bb;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.input-group .search-friends-button:hover {
+  background-color: #0678e3;
+}
+
+/* New styles to match */
+.search-container {
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.search-wrapper .search-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+  color: #0563bb;
+}
+
+#search-users {
+  width: 100%;
+  padding: 10px;
+  padding-left: 35px; /* Add space for the icon */
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  flex-grow: 1;
+}
+
+.search-wrapper .search-button {
+  background-color: #0563bb;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.search-wrapper .search-button:hover {
+  background-color: #0678e3;
+}
 /* Conversation Modal Styles */
 #conversation-modal .modal-content {
   display: flex;

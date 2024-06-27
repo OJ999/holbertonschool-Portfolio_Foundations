@@ -8,141 +8,109 @@
 (function() {
   "use strict";
 
-  /**
-   * Helper functions
-   */
   const select = (el, all = false) => {
-      el = el.trim();
-      return all ? [...document.querySelectorAll(el)] : document.querySelector(el);
+    el = el.trim();
+    return all ? [...document.querySelectorAll(el)] : document.querySelector(el);
   };
 
   const on = (type, el, listener, all = false) => {
-      let selectEl = select(el, all);
-      if (selectEl) {
-          if (all) {
-              selectEl.forEach(e => e.addEventListener(type, listener));
-          } else {
-              selectEl.addEventListener(type, listener);
-          }
+    let selectEl = select(el, all);
+    if (selectEl) {
+      if (all) {
+        selectEl.forEach(e => e.addEventListener(type, listener));
+      } else {
+        selectEl.addEventListener(type, listener);
       }
+    }
   };
 
   const onscroll = (el, listener) => {
-      el.addEventListener('scroll', listener);
+    el.addEventListener('scroll', listener);
   };
 
-  /**
-   * Navbar links active state on scroll
-   */
   let navbarlinks = select('#navbar .scrollto', true);
   const navbarlinksActive = () => {
-      let position = window.scrollY + 200;
-      navbarlinks.forEach(navbarlink => {
-          if (!navbarlink.hash) return;
-          let section = select(navbarlink.hash);
-          if (!section) return;
-          if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-              navbarlink.classList.add('active');
-          } else {
-              navbarlink.classList.remove('active');
-          }
-      });
+    let position = window.scrollY + 200;
+    navbarlinks.forEach(navbarlink => {
+      if (!navbarlink.hash) return;
+      let section = select(navbarlink.hash);
+      if (!section) return;
+      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+        navbarlink.classList.add('active');
+      } else {
+        navbarlink.classList.remove('active');
+      }
+    });
   };
   window.addEventListener('load', navbarlinksActive);
   onscroll(document, navbarlinksActive);
 
-  /**
-   * Scroll to an element with header offset
-   */
   const scrollto = (el) => {
-      let elementPos = select(el).offsetTop;
-      window.scrollTo({
-          top: elementPos,
-          behavior: 'smooth'
-      });
+    let elementPos = select(el).offsetTop;
+    window.scrollTo({
+      top: elementPos,
+      behavior: 'smooth'
+    });
   };
 
-  /**
-   * Back to top button
-   */
   let backtotop = select('.back-to-top');
   if (backtotop) {
-      const toggleBacktotop = () => {
-          backtotop.classList.toggle('active', window.scrollY > 100);
-      };
-      window.addEventListener('load', toggleBacktotop);
-      onscroll(document, toggleBacktotop);
+    const toggleBacktotop = () => {
+      backtotop.classList.toggle('active', window.scrollY > 100);
+    };
+    window.addEventListener('load', toggleBacktotop);
+    onscroll(document, toggleBacktotop);
   }
 
-  /**
-   * Mobile nav toggle
-   */
   on('click', '.mobile-nav-toggle', function(e) {
-      select('body').classList.toggle('mobile-nav-active');
-      this.classList.toggle('bi-list');
-      this.classList.toggle('bi-x');
+    select('body').classList.toggle('mobile-nav-active');
+    this.classList.toggle('bi-list');
+    this.classList.toggle('bi-x');
   });
 
-  /**
-   * Scroll with offset on links with a class name .scrollto
-   */
   on('click', '.scrollto', function(e) {
-      if (select(this.hash)) {
-          e.preventDefault();
-
-          let body = select('body');
-          if (body.classList.contains('mobile-nav-active')) {
-              body.classList.remove('mobile-nav-active');
-              select('.mobile-nav-toggle').classList.toggle('bi-list');
-              select('.mobile-nav-toggle').classList.toggle('bi-x');
-          }
-          scrollto(this.hash);
+    if (select(this.hash)) {
+      e.preventDefault();
+      let body = select('body');
+      if (body.classList.contains('mobile-nav-active')) {
+        body.classList.remove('mobile-nav-active');
+        select('.mobile-nav-toggle').classList.toggle('bi-list');
+        select('.mobile-nav-toggle').classList.toggle('bi-x');
       }
+      scrollto(this.hash);
+    }
   }, true);
 
-  /**
-   * Scroll with offset on page load with hash links in the URL
-   */
   window.addEventListener('load', () => {
-      if (window.location.hash && select(window.location.hash)) {
-          scrollto(window.location.hash);
-      }
+    if (window.location.hash && select(window.location.hash)) {
+      scrollto(window.location.hash);
+    }
   });
 
-  /**
-   * Preloader
-   */
   let preloader = select('#preloader');
   if (preloader) {
-      window.addEventListener('load', () => {
-          preloader.remove();
-      });
+    window.addEventListener('load', () => {
+      preloader.remove();
+    });
   }
 
-  /**
-   * Hero type effect
-   */
   const typed = select('.typed');
   if (typed) {
-      let typed_strings = typed.getAttribute('data-typed-items').split(',');
-      new Typed('.typed', {
-          strings: typed_strings,
-          loop: true,
-          typeSpeed: 100,
-          backSpeed: 50,
-          backDelay: 2000
-      });
+    let typed_strings = typed.getAttribute('data-typed-items').split(',');
+    new Typed('.typed', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000
+    });
   }
 
-  /**
-   * Profile Edit Pop-Up
-   */
   document.addEventListener("DOMContentLoaded", function() {
     var editProfilePopup = document.getElementById("edit-profile-popup");
     var editProfileBtn = document.querySelector(".edit-profile-button");
     var closeEditProfile = editProfilePopup.querySelector(".close");
 
-    // Function to set placeholders based on current profile details
     const setEditProfilePlaceholders = () => {
       document.getElementById("name").placeholder = document.querySelector(".profile-details h2").textContent.trim();
       document.getElementById("bio").placeholder = document.querySelector(".profile-details p.fst-italic").textContent.trim();
@@ -151,28 +119,25 @@
       document.getElementById("phone").placeholder = document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling.textContent.trim();
       document.getElementById("city").placeholder = document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling.textContent.trim();
     };
-  
+
     editProfileBtn.addEventListener("click", function() {
-        setEditProfilePlaceholders();
-        editProfilePopup.style.display = "block";
+      setEditProfilePlaceholders();
+      editProfilePopup.style.display = "block";
     });
-  
+
     closeEditProfile.addEventListener("click", function() {
-        editProfilePopup.style.display = "none";
+      editProfilePopup.style.display = "none";
     });
-  
+
     window.addEventListener("click", function(event) {
-        if (event.target == editProfilePopup) {
-            editProfilePopup.style.display = "none";
-        }
+      if (event.target == editProfilePopup) {
+        editProfilePopup.style.display = "none";
+      }
     });
-  
-    // Handle the form submission
+
     var editProfileForm = document.getElementById("edit-profile-form");
     editProfileForm.addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent form submission
-  
-      // Get form values
+      event.preventDefault();
       var name = document.getElementById("name").value;
       var bio = document.getElementById("bio").value;
       var birthday = document.getElementById("birthday").value;
@@ -181,27 +146,32 @@
       var city = document.getElementById("city").value;
       var profilePicture = document.getElementById("profile_picture").files[0];
 
-      // Update profile details only if they have changed
-      if (name && document.querySelector(".profile-details h2").textContent.trim() !== name) {
-        document.querySelector(".profile-details h2").textContent = name;
+      const nameElement = document.querySelector(".profile-details h2");
+      const bioElement = document.querySelector(".profile-details p.fst-italic");
+      const birthdayElement = document.querySelector(".profile-details ul li:nth-child(1) strong").nextSibling;
+      const emailElement = document.querySelector(".profile-details ul li:nth-child(2) strong").nextSibling;
+      const phoneElement = document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling;
+      const cityElement = document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling;
+
+      if (name && nameElement.textContent.trim() !== name) {
+        nameElement.textContent = name;
       }
-      if (bio && document.querySelector(".profile-details p.fst-italic").textContent.trim() !== bio) {
-        document.querySelector(".profile-details p.fst-italic").textContent = bio;
+      if (bio && bioElement.textContent.trim() !== bio) {
+        bioElement.textContent = bio;
       }
-      if (birthday && document.querySelector(".profile-details ul li:nth-child(1) strong").nextSibling.textContent.trim() !== birthday) {
-        document.querySelector(".profile-details ul li:nth-child(1) strong").nextSibling.textContent = ` ${birthday}`;
+      if (birthday && birthdayElement.textContent.trim() !== birthday) {
+        birthdayElement.textContent = ` ${birthday}`;
       }
-      if (email && document.querySelector(".profile-details ul li:nth-child(2) strong").nextSibling.textContent.trim() !== email) {
-        document.querySelector(".profile-details ul li:nth-child(2) strong").nextSibling.textContent = ` ${email}`;
+      if (email && emailElement.textContent.trim() !== email) {
+        emailElement.textContent = ` ${email}`;
       }
-      if (phone && document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling.textContent.trim() !== phone) {
-        document.querySelector(".profile-details ul li:nth-child(3) strong").nextSibling.textContent = ` ${phone}`;
+      if (phone && phoneElement.textContent.trim() !== phone) {
+        phoneElement.textContent = ` ${phone}`;
       }
-      if (city && document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling.textContent.trim() !== city) {
-        document.querySelector(".profile-details ul li:nth-child(4) strong").nextSibling.textContent = ` ${city}`;
+      if (city && cityElement.textContent.trim() !== city) {
+        cityElement.textContent = ` ${city}`;
       }
-  
-      // Update profile picture if a new one is uploaded
+
       if (profilePicture) {
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -209,22 +179,17 @@
         };
         reader.readAsDataURL(profilePicture);
       }
-  
-      // Hide the popup
+
       editProfilePopup.style.display = "none";
     });
   });
 
-  /**
-   * Friends, Profile, and Schedule Modals
-   */
   document.addEventListener('DOMContentLoaded', (event) => {
-    // Open and close modals
     function setupModal(modalId, triggerId, closeClass) {
       const modal = document.getElementById(modalId);
       const trigger = document.getElementById(triggerId);
       const closeBtn = modal.querySelector(closeClass);
-  
+
       if (trigger) {
         trigger.onclick = () => modal.style.display = "block";
       }
@@ -233,52 +198,67 @@
         if (event.target == modal) modal.style.display = "none";
       };
     }
-  
+
     setupModal('friends-modal', 'friends-link', '.close');
     setupModal('profile-modal', 'profile-link', '.close');
     setupModal('schedule-modal', 'start-link', '.close');
-    setupModal('conversation-modal', null, '.close'); // Conversation modal
-  
-    // Friends modal functionality
+    setupModal('conversation-modal', null, '.close');
+    setupModal('add-friend-modal', 'add-friend-btn', '.close');
+
+    var addFriendModal = document.getElementById('add-friend-modal');
+    var searchFriendsBtn = document.getElementById('search-friends-btn');
+    var closeAddFriendModal = addFriendModal.querySelector('.close');
+
+    searchFriendsBtn.addEventListener('click', function() {
+      const query = document.getElementById('search-friends').value.toLowerCase();
+      const friends = document.querySelectorAll('#friends-list-container .friend-item');
+      friends.forEach(friend => {
+        if (friend.textContent.toLowerCase().includes(query)) {
+          friend.style.display = '';
+        } else {
+          friend.style.display = 'none';
+        }
+      });
+    });
+
+    closeAddFriendModal.addEventListener('click', function() {
+      addFriendModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target == addFriendModal) {
+        addFriendModal.style.display = 'none';
+      }
+    });
+
     const addFriendBtn = document.getElementById('add-friend-btn');
     const friendsListContainer = document.getElementById('friends-list-container');
     const searchFriendsInput = document.getElementById('search-friends');
     const friendsListBtn = document.getElementById('friends-list-btn');
     const friendRequestsBtn = document.getElementById('friend-requests-btn');
     const friendRequestsContainer = document.getElementById('friend-requests-container');
-  
+
     addFriendBtn.onclick = () => {
-      const friendName = prompt("Enter the name of the new friend:");
-      if (friendName) {
-        const friendElement = document.createElement('div');
-        friendElement.classList.add('friend-item');
-        friendElement.innerHTML = `
-          <img src="path_to_profile_picture.jpg" alt="Profile Picture" class="profile-pic">
-          <span class="friend-name">${friendName}</span>
-          <button class="message-btn">Message</button>
-        `;
-        friendsListContainer.appendChild(friendElement);
-        setupMessageButton(friendElement.querySelector('.message-btn'));
-      }
+      addFriendModal.style.display = 'block';
     };
-  
+
     friendsListBtn.onclick = () => showFriendsList();
     friendRequestsBtn.onclick = () => showFriendRequests();
-  
+
     function showFriendsList() {
       friendsListContainer.style.display = 'block';
       friendRequestsContainer.style.display = 'none';
       friendsListBtn.classList.add('active');
       friendRequestsBtn.classList.remove('active');
     }
-  
+
     function showFriendRequests() {
       friendsListContainer.style.display = 'none';
       friendRequestsContainer.style.display = 'block';
       friendsListBtn.classList.remove('active');
       friendRequestsBtn.classList.add('active');
     }
-  
+
     searchFriendsInput.oninput = () => {
       const query = searchFriendsInput.value.toLowerCase();
       const friends = friendsListContainer.querySelectorAll('.friend-item');
@@ -291,21 +271,6 @@
       });
     };
 
-    // Search functionality for Friends
-    const searchFriendsBtn = document.getElementById('search-friends-btn');
-    searchFriendsBtn.addEventListener('click', () => {
-      const query = searchFriendsInput.value.toLowerCase();
-      const friends = friendsListContainer.querySelectorAll('.friend-item');
-      friends.forEach(friend => {
-        if (friend.textContent.toLowerCase().includes(query)) {
-          friend.style.display = '';
-        } else {
-          friend.style.display = 'none';
-        }
-      });
-    });
-  
-    // Conversation modal functionality
     const conversationModal = document.getElementById('conversation-modal');
     const closeConversationModal = conversationModal.querySelector('.close');
     const sendMessageBtn = document.getElementById('send-message-btn');
@@ -313,11 +278,11 @@
     const conversationMessages = document.getElementById('conversation-messages');
     const friendNameElem = document.getElementById('conversation-friend-name');
     let currentFriendName = '';
-  
+
     document.querySelectorAll('.message-btn').forEach(btn => {
       setupMessageButton(btn);
     });
-  
+
     function setupMessageButton(btn) {
       btn.addEventListener('click', (e) => {
         const friendName = e.target.closest('.friend-item').querySelector('.friend-name').innerText;
@@ -326,32 +291,32 @@
         openConversationModal(friendName);
       });
     }
-  
+
     closeConversationModal.onclick = () => {
       conversationModal.style.display = 'none';
     };
-  
+
     window.onclick = (event) => {
       if (event.target == conversationModal) {
         conversationModal.style.display = 'none';
       }
     };
-  
+
     sendMessageBtn.addEventListener('click', () => {
       sendMessage();
     });
-  
+
     messageInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         sendMessage();
       }
     });
-  
+
     function openConversationModal(friendName) {
       conversationModal.style.display = 'block';
       loadConversation(friendName);
     }
-  
+
     function addMessage(text, type) {
       const messageElem = document.createElement('div');
       messageElem.classList.add('message', type);
@@ -359,17 +324,15 @@
       conversationMessages.appendChild(messageElem);
       conversationMessages.scrollTop = conversationMessages.scrollHeight;
     }
-  
+
     function sendMessage() {
       const messageText = messageInput.value.trim();
       if (messageText !== '') {
         addMessage(messageText, 'sent');
         messageInput.value = '';
-        // Here, you can add the logic to send the message to the server
       }
     }
-  
-    // Schedule modal functionality
+
     const editModal = document.getElementById("editModal");
     const toggleInputContainerBtn = document.getElementById('toggleInputContainerBtn');
     const addExerciseBtn = document.getElementById('addExerciseBtn');
@@ -383,15 +346,15 @@
     const saveExercisesBtn = document.getElementById('saveExercisesBtn');
     const modalDayTitle = document.getElementById('modalDayTitle');
     const closeEditModal = document.querySelector("#editModal .close");
-  
+
     let exercises = {};
     let currentEditIndex = null;
-  
+
     closeEditModal.onclick = () => editModal.style.display = "none";
     window.onclick = (event) => {
       if (event.target == editModal) editModal.style.display = "none";
     };
-  
+
     document.querySelectorAll('.btn-outline-secondary').forEach(button => {
       button.addEventListener('click', function() {
         const day = button.getAttribute('data-day');
@@ -400,14 +363,14 @@
         editModal.style.display = "block";
       });
     });
-  
+
     addExerciseBtn.onclick = () => {
       const name = exerciseName.value.trim();
       const reps = exerciseReps.value.trim();
       const timePerRep = exerciseTimePerRep.value.trim();
       const sets = exerciseSets.value.trim();
       const breakTime = exerciseBreak.value.trim();
-      
+
       if (name && reps && timePerRep && sets && breakTime) {
         const exercise = { name, reps, timePerRep, sets, breakTime };
         const day = modalDayTitle.textContent;
@@ -423,7 +386,7 @@
         clearInputs();
       }
     };
-  
+
     function updateExerciseList() {
       exerciseList.innerHTML = '';
       const day = modalDayTitle.textContent;
@@ -431,7 +394,7 @@
         exercises[day].forEach((exercise, index) => addExerciseToList(exercise, index));
       }
     }
-  
+
     function addExerciseToList(exercise, index) {
       const li = document.createElement("li");
       li.innerHTML = `
@@ -461,12 +424,12 @@
       };
       exerciseList.appendChild(li);
     }
-  
+
     saveExercisesBtn.onclick = () => {
       alert('Exercises saved successfully!');
       editModal.style.display = 'none';
     };
-  
+
     function clearInputs() {
       exerciseName.value = '';
       exerciseReps.value = '';
@@ -474,7 +437,7 @@
       exerciseSets.value = '';
       exerciseBreak.value = '';
     }
-  
+
     toggleInputContainerBtn.onclick = () => {
       if (exerciseInputContainer.style.display === "none") {
         exerciseInputContainer.style.display = "flex";
@@ -482,7 +445,7 @@
         exerciseInputContainer.style.display = "none";
       }
     };
-  
+
     function createFriendRequestElement(name, profilePic) {
       const friendRequestElement = document.createElement('div');
       friendRequestElement.classList.add('friend-request-item');
@@ -493,20 +456,20 @@
         <button class="decline-btn">Decline</button>
       `;
       friendRequestsContainer.appendChild(friendRequestElement);
-  
+
       friendRequestElement.querySelector('.accept-btn').onclick = () => {
         moveFriendToAcceptedList(friendRequestElement);
       };
-  
+
       friendRequestElement.querySelector('.decline-btn').onclick = () => {
         friendRequestElement.remove();
       };
     }
-  
+
     function moveFriendToAcceptedList(friendElement) {
       const friendName = friendElement.querySelector('.friend-name').textContent;
       const friendProfilePic = friendElement.querySelector('.profile-pic').src;
-  
+
       const newFriendElement = document.createElement('div');
       newFriendElement.classList.add('friend-item');
       newFriendElement.innerHTML = `
@@ -514,91 +477,72 @@
         <span class="friend-name">${friendName}</span>
         <button class="message-btn">Message</button>
       `;
-  
+
       friendsListContainer.appendChild(newFriendElement);
       setupMessageButton(newFriendElement.querySelector('.message-btn'));
       friendElement.remove();
     }
-  
-    // Example dynamic friend request handling
+
     createFriendRequestElement("My PT", "path_to_profile_picture.jpg");
   });
-  
-  /**
-   * Portfolio isotope and filter
-   */
+
   window.addEventListener('load', () => {
-      let portfolioContainer = select('.portfolio-container');
-      if (portfolioContainer) {
-          let portfolioIsotope = new Isotope(portfolioContainer, {
-              itemSelector: '.portfolio-item'
-          });
-  
-          let portfolioFilters = select('#portfolio-flters li', true);
-  
-          on('click', '#portfolio-flters li', function(e) {
-              e.preventDefault();
-              portfolioFilters.forEach(function(el) {
-                  el.classList.remove('filter-active');
-              });
-              this.classList.add('filter-active');
-              portfolioIsotope.arrange({
-                  filter: this.getAttribute('data-filter')
-              });
-              portfolioIsotope.on('arrangeComplete', function() {
-                  AOS.refresh();
-              });
-          }, true);
-      }
-  });
-  
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-      selector: '.portfolio-lightbox'
-  });
-  
-  /**
-   * Initiate portfolio details lightbox 
-   */
-  const portfolioDetailsLightbox = GLightbox({
-      selector: '.portfolio-details-lightbox',
-      width: '90%',
-      height: '90vh'
-  });
-  
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-      speed: 400,
-      loop: true,
-      autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-      },
-      pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-      }
-  });
-  
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-      AOS.init({
-          duration: 1000,
-          easing: 'ease-in-out',
-          once: true,
-          mirror: false
+    let portfolioContainer = select('.portfolio-container');
+    if (portfolioContainer) {
+      let portfolioIsotope = new Isotope(portfolioContainer, {
+        itemSelector: '.portfolio-item'
       });
+
+      let portfolioFilters = select('#portfolio-flters li', true);
+
+      on('click', '#portfolio-flters li', function(e) {
+        e.preventDefault();
+        portfolioFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh();
+        });
+      }, true);
+    }
   });
-  
-  /**
-   * Initiate Pure Counter 
-   */
+
+  const portfolioLightbox = GLightbox({
+    selector: '.portfolio-lightbox'
+  });
+
+  const portfolioDetailsLightbox = GLightbox({
+    selector: '.portfolio-details-lightbox',
+    width: '90%',
+    height: '90vh'
+  });
+
+  new Swiper('.portfolio-details-slider', {
+    speed: 400,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    }
+  });
+
+  window.addEventListener('load', () => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  });
+
   new PureCounter();
 })();
