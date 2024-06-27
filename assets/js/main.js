@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const user = userAccounts.find(user => user.username === usernameInput && user.password === passwordInput);
     if (user) {
-      window.location.href = "welcome1.html";
+      window.location.href = "User1.html";
     } else {
       document.getElementById("passwordError").innerText = "Incorrect username or password.";
     }
