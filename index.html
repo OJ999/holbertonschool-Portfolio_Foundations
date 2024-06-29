@@ -14,7 +14,7 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -93,34 +93,28 @@
 </head>
 <body>
 
-  <form id="signupForm" class="form justify-content-center align-items-center" onsubmit="signIn(event)">
+  <form id="signupForm" class="form" onsubmit="signIn(event)">
     <input type="text" id="username" placeholder="Username" required>
     <input type="password" id="password" placeholder="Password" required>
     <span class="password-error" id="passwordError"></span>
     <input type="submit" value="Sign In">  
-</form>
+  </form>
   <input id="Register" type="submit" value="Register Now" onclick="showPopup()">
   <div id="popupContainer">
     <span class="close" onclick="hidePopup()">&times;</span>
     <h2>Sign Up</h2>
     <form id="popup" onsubmit="registerUser(event)">
-      <input type="text" id="popupUsername" placeholder="Name" required>
-      <input type="text" id="popupUsername" placeholder="Surname" required>
+      <input type="text" id="popupFullName" placeholder="Full Name" required>
+      <input type="text" id="popupUsername" placeholder="Username" required>
       <input type="password" id="popupPassword" placeholder="Password" required>
       <input type="email" id="popupEmail" placeholder="Email / Phone Number" required>
       <label for="category">Select Category:</label>
       <select name="category" id="category" required>
         <option value="" disabled selected> - </option>
         <option value="PersonalTrainer">Personal Trainer</option>
-        <option value="Client">Client</option>
+        <option value="Client">Client / Other</option>
       </select>
       <br>
-      <label for="category">Gender:</label>
-      <select name="category" id="category" required>
-        <option value="" disabled selected> - </option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
       <input type="submit" value="Sign Up">
     </form>
   </div>
@@ -178,7 +172,72 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script src="assets/js/server.js"></script>
+  <script>
+    function registerUser(event) {
+      event.preventDefault();
+      const fullName = document.getElementById("popupFullName").value.trim();
+      const username = document.getElementById("popupUsername").value.trim();
+      const password = document.getElementById("popupPassword").value.trim();
+      const email = document.getElementById("popupEmail").value.trim();
+      const category = document.getElementById("category").value;
+  
+      fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, username, password, email, category })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'User registered successfully') {
+          alert('Registration successful');
+          document.getElementById("popupContainer").style.display = "none";
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  
+    function signIn(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+  
+      fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Login successful') {
+          localStorage.setItem("fullName", data.fullName);
+          if (data.category === "Client") {
+            window.location.href = "User1.html";
+          } else if (data.category === "PersonalTrainer") {
+            window.location.href = "User2.html";
+          }
+        } else {
+          document.getElementById("passwordError").innerText = data.message;
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  
+    function showPopup() {
+      document.getElementById("popupContainer").style.display = "block";
+    }
+  
+    function hidePopup() {
+      document.getElementById("popupContainer").style.display = "none";
+    }
+  
+    document.getElementById("signupForm").addEventListener("submit", signIn);
+    document.getElementById("popup").addEventListener("submit", registerUser);
+    document.getElementById("Register").addEventListener("click", showPopup);
+    document.querySelector(".close").addEventListener("click", hidePopup);
+  </script>
 </body>
 
 </html>

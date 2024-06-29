@@ -193,8 +193,8 @@ h6 {
   }
 }
 
- /* Center the signupForm */
- .container {
+/* Center the signupForm */
+.container {
   text-align: center; /* Center align the content */
 }
 
@@ -240,7 +240,6 @@ input[type="email"] {
   font-size: 28px;
   font-weight: bold;
 }
-
 
 /*--------------------------------------------------------------
 # Footer
