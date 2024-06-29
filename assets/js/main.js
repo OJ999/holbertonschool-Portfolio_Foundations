@@ -274,19 +274,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function registerUser(event) {
     event.preventDefault();
-    const usernameInput = document.getElementById("popupName").value.trim();
-    const surnameInput = document.getElementById("popupSurname").value.trim();
+    const fullNameInput = document.getElementById("popupFullName").value.trim();
+    const usernameInput = document.getElementById("popupUsername").value.trim();
     const passwordInput = document.getElementById("popupPassword").value.trim();
     const emailInput = document.getElementById("popupEmail").value.trim();
+    const categoryInput = document.getElementById("category").value;
 
     if (userAccounts.some(user => user.username === usernameInput)) {
       alert("Username already exists. Please choose another username.");
       return;
     }
 
-    const newUser = { username: usernameInput, surname: surnameInput, password: passwordInput, email: emailInput };
+    const newUser = { fullName: fullNameInput, username: usernameInput, password: passwordInput, email: emailInput, category: categoryInput };
     userAccounts.push(newUser);
-    window.location.href = "signupform.html";
+
+    if (categoryInput === "Client") {
+      window.location.href = "User1.html";
+    } else if (categoryInput === "PersonalTrainer") {
+      window.location.href = "User2.html";
+    }
   }
 
   function signIn(event) {
@@ -296,7 +302,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const user = userAccounts.find(user => user.username === usernameInput && user.password === passwordInput);
     if (user) {
-      window.location.href = "User1.html";
+      if (user.category === "Client") {
+        window.location.href = "User1.html";
+      } else if (user.category === "PersonalTrainer") {
+        window.location.href = "User2.html";
+      }
     } else {
       document.getElementById("passwordError").innerText = "Incorrect username or password.";
     }
