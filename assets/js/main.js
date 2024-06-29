@@ -270,7 +270,7 @@
 })()
 
 document.addEventListener("DOMContentLoaded", () => {
-  const userAccounts = [{ username: "x", password: "12345678" }];
+  const userAccounts = JSON.parse(localStorage.getItem("userAccounts")) || [];
 
   function registerUser(event) {
     event.preventDefault();
@@ -287,6 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const newUser = { fullName: fullNameInput, username: usernameInput, password: passwordInput, email: emailInput, category: categoryInput };
     userAccounts.push(newUser);
+    localStorage.setItem("userAccounts", JSON.stringify(userAccounts));
+    localStorage.setItem("fullName", fullNameInput);
 
     if (categoryInput === "Client") {
       window.location.href = "User1.html";
@@ -302,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const user = userAccounts.find(user => user.username === usernameInput && user.password === passwordInput);
     if (user) {
+      localStorage.setItem("fullName", user.fullName);
       if (user.category === "Client") {
         window.location.href = "User1.html";
       } else if (user.category === "PersonalTrainer") {
