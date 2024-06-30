@@ -25,7 +25,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/User1.css" rel="stylesheet">
+  <link href="assets/css/User2.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: MyPT
@@ -58,16 +58,6 @@
       <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box iconbox-blue">
           <div class="icon">
-            <a href="#schedule-modal" id="start-link">
-              <i class="bi bi-speedometer"></i>
-              <h4>Schedule</h4>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box iconbox-blue">
-          <div class="icon">
             <a href="#" id="profile-link">
               <i class="bi bi-person-circle"></i>
               <h4>Profile</h4>
@@ -75,9 +65,161 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box iconbox-blue">
+          <div class="icon">
+            <a href="#" id="clients-link">
+              <i class="bi bi-people-fill"></i>
+              <h4>Clients</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box iconbox-blue">
+          <div class="icon">
+            <a href="#schedule-modal" id="start-link">
+              <i class="bi bi-speedometer"></i>
+              <h4>Schedule</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+<!-- Clients Modal -->
+<div id="clients-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="section-title">
+        <h2>Clients</h2>
+      </div>
+      <span class="close">&times;</span>
+    </div>
+    <div class="search-container clients-search-container">
+      <div class="search-wrapper">
+        <div class="input-group">
+          <input type="text" id="search-clients" class="form-control" placeholder="Search Clients">
+          <button id="search-clients-btn" class="btn btn-secondary search-clients-button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="clients-navigation">
+      <button class="nav-button" id="clients-list-btn">Clients</button>
+    </div>
+    <div id="clients-list-container">
+      <!-- Clients List -->
     </div>
   </div>
-  
+</div>
+
+<!-- Client Schedule Modal -->
+<div id="client-schedule-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <div class="section-title">
+        <h2>Schedule</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <!-- Monday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Monday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Monday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tuesday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Tuesday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Tuesday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Wednesday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Wednesday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Wednesday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Thursday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Thursday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Thursday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Friday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Friday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Friday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Saturday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Saturday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Saturday">Edit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Sunday -->
+        <div class="col-lg-4 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <h2>Sunday</h2>
+            <div class="button-container">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-day="Sunday">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Client Modal -->
+<div id="add-client-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="section-title">
+        <h2>Select Friend to Add as Client</h2>
+      </div>
+      <span class="close">&times;</span>
+    </div>
+    <div class="search-container">
+      <div class="search-wrapper">
+        <div class="input-group">
+          <input type="text" id="search-friends-for-client" class="form-control" placeholder="Search Friends">
+          <button id="search-friends-for-client-btn" class="btn btn-secondary search-friends-button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="friends-for-client-list-container">
+      <!-- Friends List for Adding as Client -->
+    </div>
+  </div>
+</div>
+
+
 <!-- Friends Modal -->
 <div id="friends-modal" class="modal">
   <div class="modal-content">

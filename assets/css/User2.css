@@ -1136,3 +1136,42 @@ h1, h2, h3, h4, h5, h6 {
 .popup input[type="file"] {
   margin-top: 10px;
 }
+
+
+/* Clients Modal Enhancements */
+.client-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.client-item .profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.client-item .client-name {
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.client-item .remove-client-btn {
+  background-color: white;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.client-item .remove-client-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}

@@ -1,10 +1,3 @@
-/**
- * Template Name: MyPT
- * Updated: April 2024
- * Author: OmarJaber
- * Project
- */
-
 (function() {
   "use strict";
 
@@ -204,6 +197,8 @@
     setupModal('schedule-modal', 'start-link', '.close');
     setupModal('conversation-modal', null, '.close');
     setupModal('add-friend-modal', 'add-friend-btn', '.close');
+    setupModal('clients-modal', 'clients-link', '.close');
+    setupModal('client-schedule-modal', null, '.close');
 
     var addFriendModal = document.getElementById('add-friend-modal');
     var searchFriendsBtn = document.getElementById('search-friends-btn');
@@ -476,14 +471,156 @@
         <img src="${friendProfilePic}" alt="Profile Picture" class="profile-pic">
         <span class="friend-name">${friendName}</span>
         <button class="message-btn">Message</button>
+        <button class="add-client-btn message-btn">Add to Clients</button>
       `;
 
       friendsListContainer.appendChild(newFriendElement);
       setupMessageButton(newFriendElement.querySelector('.message-btn'));
+      setupAddClientButton(newFriendElement.querySelector('.add-client-btn'));
       friendElement.remove();
     }
 
-    createFriendRequestElement("My PT", "path_to_profile_picture.jpg");
+    function setupAddClientButton(btn) {
+      btn.addEventListener('click', (e) => {
+        const friendElement = e.target.closest('.friend-item');
+        const friendName = friendElement.querySelector('.friend-name').innerText;
+        const friendProfilePic = friendElement.querySelector('.profile-pic').src;
+
+        if (isClientAlreadyAdded(friendName)) {
+          alert('This friend is already a client.');
+          return;
+        }
+
+        // Change button to show a check mark
+        btn.innerHTML = '✔';
+        btn.classList.add('checked');
+        
+        // Revert button back to original after 1.5 seconds
+        setTimeout(() => {
+          btn.innerHTML = 'Add to Clients';
+          btn.classList.remove('checked');
+        }, 1500);
+
+        addClientToList(friendName, friendProfilePic);
+      });
+    }
+
+    function isClientAlreadyAdded(clientName) {
+      const clients = document.querySelectorAll('#clients-list-container .client-name');
+      return Array.from(clients).some(client => client.textContent === clientName);
+    }
+
+    const addClientBtn = document.getElementById('add-client-btn');
+    const clientsListContainer = document.getElementById('clients-list-container');
+
+    function addClientToList(name, profilePic) {
+      const clientItem = document.createElement('div');
+      clientItem.classList.add('client-item');
+      clientItem.innerHTML = `
+        <img src="${profilePic}" alt="Profile Picture" class="profile-pic">
+        <span class="client-name">${name}</span>
+        <button class="remove-client-btn btn btn-outline-danger btn-sm">Remove</button>
+        <button class="schedule-client-btn btn btn-outline-secondary btn-sm">Schedule</button>
+      `;
+      clientsListContainer.appendChild(clientItem);
+
+      clientItem.querySelector('.remove-client-btn').onclick = () => {
+        clientItem.remove();
+      };
+
+      clientItem.querySelector('.schedule-client-btn').onclick = () => {
+        openClientScheduleModal(name);
+      };
+    }
+
+    const searchClientsBtn = document.getElementById('search-clients-btn');
+    searchClientsBtn.addEventListener('click', function() {
+      const query = document.getElementById('search-clients').value.toLowerCase();
+      const clients = document.querySelectorAll('#clients-list-container .client-item');
+      clients.forEach(client => {
+        if (client.textContent.toLowerCase().includes(query)) {
+          client.style.display = '';
+        } else {
+          client.style.display = 'none';
+        }
+      });
+    });
+
+    // Simulate a friend request from user1.html named "Client"
+    createFriendRequestElement("Client", "path_to_profile_picture.jpg");
+
+    // Client Schedule Modal Logic
+    let clientSchedules = {};
+    const clientScheduleModal = document.getElementById('client-schedule-modal');
+    const clientScheduleList = document.getElementById('client-schedule-list');
+    const clientScheduleName = document.getElementById('client-schedule-name');
+    const clientAddScheduleBtn = document.getElementById('client-add-schedule-btn');
+    const clientSaveScheduleBtn = document.getElementById('client-save-schedule-btn');
+    const closeClientScheduleModal = clientScheduleModal.querySelector('.close');
+    let currentClientName = '';
+
+    function openClientScheduleModal(clientName) {
+      currentClientName = clientName;
+      clientScheduleModal.style.display = 'block';
+      loadClientSchedule(clientName);
+    }
+
+    closeClientScheduleModal.onclick = () => {
+      clientScheduleModal.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+      if (event.target == clientScheduleModal) {
+        clientScheduleModal.style.display = 'none';
+      }
+    };
+
+    clientAddScheduleBtn.onclick = () => {
+      const scheduleItem = clientScheduleName.value.trim();
+      if (scheduleItem !== '') {
+        addClientScheduleItem(scheduleItem);
+        clientScheduleName.value = '';
+      }
+    };
+
+    clientSaveScheduleBtn.onclick = () => {
+      saveClientSchedule();
+    };
+
+    function loadClientSchedule(clientName) {
+      clientScheduleList.innerHTML = '';
+      if (clientSchedules[clientName]) {
+        clientSchedules[clientName].forEach((item, index) => addClientScheduleItemToList(item, index));
+      }
+    }
+
+    function addClientScheduleItem(scheduleItem) {
+      const clientName = currentClientName;
+      if (!clientSchedules[clientName]) {
+        clientSchedules[clientName] = [];
+      }
+      clientSchedules[clientName].push(scheduleItem);
+      addClientScheduleItemToList(scheduleItem, clientSchedules[clientName].length - 1);
+    }
+
+    function addClientScheduleItemToList(scheduleItem, index) {
+      const li = document.createElement('li');
+      li.innerText = scheduleItem;
+      const deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('btn', 'btn-outline-danger', 'btn-sm');
+      deleteBtn.innerText = 'Delete';
+      deleteBtn.onclick = () => {
+        clientSchedules[currentClientName].splice(index, 1);
+        loadClientSchedule(currentClientName);
+      };
+      li.appendChild(deleteBtn);
+      clientScheduleList.appendChild(li);
+    }
+
+    function saveClientSchedule() {
+      alert(`Schedule for ${currentClientName} saved successfully!`);
+      clientScheduleModal.style.display = 'none';
+    }
   });
 
   window.addEventListener('load', () => {
